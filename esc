@@ -1,0 +1,193 @@
+[1mdiff --git a/404.php b/404.php[m
+[1mnew file mode 100644[m
+[1mindex 0000000..200475f[m
+[1m--- /dev/null[m
+[1m+++ b/404.php[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32m<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">[m
+[32m+[m[32m<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">[m
+[32m+[m[32m<?php get_header(); ?>[m
+[32m+[m	[32m<div id="content">[m
+[32m+[m[32mThe page is not found[m
+[32m+[m[32m<?php get_sidebar(); ?>[m
+[32m+[m[32m<?php get_footer(); ?>[m
+\ No newline at end of file[m
+[1mdiff --git a/author.php b/author.php[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f93cc0b[m
+[1m--- /dev/null[m
+[1m+++ b/author.php[m
+[36m@@ -0,0 +1,29 @@[m
+[32m+[m[32m<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">[m
+[32m+[m[32m<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">[m
+[32m+[m[32m<?php get_header();?>[m
+[32m+[m[32m<div id="content" class="author">[m
+[32m+[m[32m<!-- This sets the $curauth variable -->[m
+[32m+[m[32m    <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));?>[m
+[32m+[m	[32m<div class="authorPhoto">[m
+[32m+[m		[32m<?php echo get_avatar( $curauth->ID , 400, 'identicon' ); ?>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m    <div class="authorInfo">[m
+[32m+[m	[32m    <h1><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h1>[m
+[32m+[m		[32m<h2>&mdash; <?php echo $curauth->address;?> &mdash;</h2>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m    <p><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?> is a  <?php echo $curauth->address;?> and has written <?php total_posts($author, $curauth->user_login); ?> articles for The Horace Mann Record. <?php echo $curauth->first_name; ?> is in the Horace Mann Class of <?php echo $curauth->city; ?>. <?php echo $curauth->description ?>You can contact <?php echo $curauth->first_name; ?> at <a href="mailto:record@horacemann.org">record@horacemann.org</a> and including <strong><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></strong> in the subject line.</p>[m
+[32m+[m
+[32m+[m[32m    <div class="column-1">[m
+[32m+[m		[32m<?php display_author_media($curauth->ID, $sidebar = false, $limit = 250, $link_without_parent = false, $header = "<div class='featuredCategoryTitle'><h1>Photos</h1></div>", $exclude_unattached = false); ?>[m
+[32m+[m[32m    <div style="clear:both;"></div>[m
+[32m+[m[32m<!-- The Loop -->[m
+[32m+[m[32m    <?php if ( have_posts() ) :?>[m
+[32m+[m[41m    [m		[32m<div class="featuredCategoryTitle">[m
+[32m+[m[41m        [m		[32m<h1>Articles</h1>[m
+[32m+[m[41m        [m	[32m</div>[m
+[32m+[m			[32m<?php full_post_list($author, $curauth->user_login) ; ?>[m
+[32m+[m[32m    <?php endif; ?>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m<!-- End Loop -->[m
+[32m+[m[32m<?php get_sidebar(); ?>[m
+[32m+[m[32m<?php get_footer(); ?>[m
+\ No newline at end of file[m
+[1mdiff --git a/category-arts-entertainment.php b/category-arts-entertainment.php[m
+[1mnew file mode 100644[m
+[1mindex 0000000..897847e[m
+[1m--- /dev/null[m
+[1m+++ b/category-arts-entertainment.php[m
+[36m@@ -0,0 +1,97 @@[m
+[32m+[m[32m<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">[m
+[32m+[m[32m<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">[m
+[32m+[m[32m<?php include 'links.php';?>[m
+[32m+[m[32m<?php get_header(); ?>[m
+[32m+[m[32m<div id="content">[m
+[32m+[m[41m                [m	[32m<div class="column-1">[m
+[32m+[m[41m               [m			[32m<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/sliderProperties.js"></script>[m
+[32m+[m[41m                    [m	[32m<div id="showcase" class="showcase">[m
+[32m+[m[32m                        <?php query_posts('category_name=arts-entertainment-featured&showposts=4');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="showcase-slide">[m
+[32m+[m								[32m<div class="showcase-content">[m
+[32m+[m									[32m<?php the_post_thumbnail('slider-preview'); ?>[m
+[32m+[m								[32m</div>[m
+[32m+[m								[32m<div class="showcase-caption">[m
+[32m+[m									[32m<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> &#448; <?php incomplete_cat_list(',');?>[m
+[32m+[m								[32m</div>[m
+[32m+[m							[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="column-1">[m
+[32m+[m[41m                    [m	[32m<div class="recent">[m
+[32m+[m[41m                        [m	[32m<h1>Most Recent Arts & Entertainment Articles</h1>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <?php query_posts('showposts=5&category_name=arts-entertainment');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="recent">[m
+[32m+[m[41m                        [m		[32m<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>[m
+[32m+[m[41m                            [m	[32m<h3 class="timestamp"><?php the_time(F);?>&nbsp;<?php the_time(j);?></h3>[m
+[32m+[m[41m                        [m		[32m<p><?php the_excerpt(); ?></p>[m
+[32m+[m[41m                        [m	[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                        <div class="more">&gt;&gt; more</div>[m[41m                                       [m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="editorsPick">[m
+[32m+[m[41m                    [m	[32m<h1>Editor's Picks</h1>[m
+[32m+[m[32m                        <?php query_posts('category_name=arts-entertainment-featured&showposts=4');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="column-4">[m
+[32m+[m[41m                        [m		[32m<p><?php incomplete_cat_list(',');?></p>[m
+[32m+[m								[32m<?php the_post_thumbnail('thumbnail'); ?>[m
+[32m+[m[41m                        [m		[32m<p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>[m
+[32m+[m[41m                        [m	[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="divider" style="clear:both; margin-bottom:10px"></div>[m
+[32m+[m[32m                    <div class="column-1">[m
+[32m+[m[41m                    [m	[32m<div class="featuredCategoryTitle">[m
+[32m+[m[41m                        [m	[32m<h1>Visual Arts</h1>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <?php query_posts('showposts=5&category_name=arts-entertainment&tag=visual-arts');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="featuredCategory">[m
+[32m+[m[41m                        [m		[32m<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>[m
+[32m+[m[41m    [m							[32m<p class="timestamp">Published on <?php the_time('l, F jS, Y g:i a') ?></p>[m
+[32m+[m				[41m    [m			[32m<p class="categories">Categories: <?php incomplete_cat_list(',');?></p>[m
+[32m+[m[41m                [m				[32m<?php edit_post_link('Edit Article', '<p class="edit">','</p>'); ?>[m
+[32m+[m[41m                        [m		[32m<p><?php the_excerpt(); ?></p>[m
+[32m+[m[41m                        [m	[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                        <div class="more">&gt;&gt; more</div>[m[41m                                       [m
+[32m+[m[32m                    </div>[m[41m                                            [m
+[32m+[m[32m                    <div class="column-1">[m
+[32m+[m[41m                    [m	[32m<div class="featuredCategoryTitle">[m
+[32m+[m[41m                        [m	[32m<h1>Performance Arts</h1>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <?php query_posts('showposts=5&category_name=arts-entertainment&tag=performance-arts');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="featuredCategory">[m
+[32m+[m[41m                        [m		[32m<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>[m
+[32m+[m[41m    [m							[32m<p class="timestamp">Published on <?php the_time('l, F jS, Y g:i a') ?></p>[m
+[32m+[m				[41m    [m			[32m<p class="categories">Categories: <?php incomplete_cat_list(',');?></p>[m
+[32m+[m[41m                [m				[32m<?php edit_post_link('Edit Article', '<p class="edit">','</p>'); ?>[m
+[32m+[m[41m                        [m		[32m<p><?php the_excerpt(); ?></p>[m
+[32m+[m[41m                        [m	[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                        <div class="more">&gt;&gt; more</div>[m[41m                                       [m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="column-1">[m
+[32m+[m[41m                    [m	[32m<div class="featuredCategoryTitle">[m
+[32m+[m[41m                        [m	[32m<h1>Music</h1>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <?php query_posts('showposts=5&category_name=arts-entertainment&tag=music');?>[m
+[32m+[m[32m                        <?php while (have_posts()) : the_post(); ?>[m
+[32m+[m							[32m<div class="featuredCategory">[m
+[32m+[m[41m                        [m		[32m<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>[m
+[32m+[m[41m    [m							[32m<p class="timestamp">Published on <?php the_time('l, F jS, Y g:i a') ?></p>[m
+[32m+[m				[41m    [m			[32m<p class="categories">Categories: <?php incomplete_cat_list(',');?></p>[m
+[32m+[m[41m                [m				[32m<?php edit_post_link('Edit Article', '<p class="edit">','</p>'); ?>[m
+[32m+[m[41m                        [m		[32m<p><?php the_excerpt(); ?></p>[m
+[32m+[m[41m                        [m	[32m</div>[m
+[32m+[m[41m        [m				[32m<?php endwhile; ?>[m
+[32m+[m[32m                        <div class="more">&gt;&gt; more</div>[m[41m                                       [m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m<?php get_sidebar(); ?>[m[41m  [m
+[32m+[m[32m<?php get_footer(); ?>[m
+\ No newline at end of file[m
+[1mdiff --git a/category-autofocus.php b/category-autofocus.php[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9a7c9c6[m
+[1m--- /dev/null[m
+[1m+++ b/category-autofocus.php[m
+[36m@@ -0,0 +1,19 @@[m
+[32m+[m[32m<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">[m
+[32m+[m[32m<html xmlns="http://www.w3.org/1999/xhtml">[m
+[32m+[m[32m<head>[m
+[32m+[m	[32m<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />[m
+[32m+[m	[32m<title>The Horace Mann Record</title>[m
+[32m+[m[32m    <link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/reset.css" rel="stylesheet"/>[m
+[32m+[m[32m    <link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/underconstruction.css" rel="stylesheet"/>[m
+[32m+[m[32m</head>[m
+[32m+[m
+[32m+[m[32m<body>[m
+[32m+[m[32m<div id="container">[m
+[32m+[m		[32m<div id="containerHeader"></div>[m
+[32m+[m[32m        <div id="page">[m
+[32m+[m			[32m<center><img src="<?php bloginfo('stylesheet_directory'); ?>/images/underconstruction.png" /></center>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m        <div id="containerFooter"></div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/category-features.php b/category-features.php[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9f45e3f[m
+[1m--- /dev/null[m
+[1m+++ b/category-features.php[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32m<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">[m
+[32m+[m[32m<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">[m
+[32m+[m[32m<?php include 'links.php';?>[m
+[32m+[m[32m<?php get_header(); ?>[m
+[32m+[m	[32m<div id="content">[m
+[32m+[m		[32m<?php if(have_posts()) : while(have_posts()) : the_post(); ?>[m
+[32m+[m			[32m<div class="featuresPost" id="<?php the_ID(); ?>">[m
+[32m+[m[41m            [m	[32m<?php the_post_thumbnail(
