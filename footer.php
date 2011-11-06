@@ -16,7 +16,7 @@
             <div class="spacer"></div>
             <ul>
             	<li><a href="<?php echo $about_link;?>">About</a></li>
-            	<li><a href="#">Staff</a></li>
+            	<li><a href="<?php echo $staff_link;?>">Staff</a></li>
             	<li><a href="<?php echo $policies_link;?>">Policies</a></li>
             	<li><a href="<?php echo $principles_link;?>">Principles</a></li>
             	<li class="last"><a href="<?php echo $contact_link;?>">Contact Us</a></li>
