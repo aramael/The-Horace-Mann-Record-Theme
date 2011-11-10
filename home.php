@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <?php include 'links.php';?>
 <?php get_header(); ?>
@@ -20,7 +20,7 @@
         				<?php endwhile; ?>
                         </div>
                     </div>
-                    <div class="left column-2">
+                    <div class="left column-2 border">
                     	<div class="recent">
                         	<h1>Most Recent Articles</h1>
                         </div>
@@ -33,7 +33,7 @@
                         	</div>
         				<?php endwhile; ?>
                     </div>
-                    <div class="right column-2 autofocusPhoto border">
+                    <div class="right column-2 autofocusPhoto">
                     	<h1>Autofocus Photo</h1>
                         <?php query_posts('category_name=autofocus-featured&showposts=1');?>
                         <?php while (have_posts()) : the_post(); ?>
@@ -55,7 +55,7 @@
         				<?php endwhile; ?>
                     </div>
                     <div class="divider" style="clear:both; margin-bottom:10px"></div>
-                	<div class="left column-2">
+                	<div class="left column-2 border">
                     	<div class="blogroll">
                         	<h1><a href="<?php echo $news_link; ?>">News</a></h1>
 							<ul>
@@ -88,7 +88,7 @@
                         	</ul>
                         </div>
                     </div>
-                    <div class="right column-2 border">
+                    <div class="right column-2">
                     	<div class="blogroll">                    
                         	<h1><a href="<?php echo $autofocus_link;?>">Autofocus</a></h1>
 							<ul>

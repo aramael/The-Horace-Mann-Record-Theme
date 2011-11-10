@@ -29,8 +29,8 @@
                 	</ul>
                 <?php endif;?>
                 	<ul class="right">
-                		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue07.pdf">Download the latest print issue</a></li>
-                    	<li class="last"><a href="#">View past issues</a></li>
+                		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue08.pdf">Download the latest print issue</a></li>
+                    	<li class="last"><a href="<?php echo $pastPDF_link;?>">View past issues</a></li>
                 	</ul>
               </div><!--END #secondNav-->
             </div><!-- END #header-->

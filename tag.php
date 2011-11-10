@@ -18,7 +18,7 @@
 		<?php endwhile; else : ?>
 		<div class="post">
 			<h2>Page Not Found</h2>
-			<p>Looks like the page you're looking for isn't here anymore. Try browsing the <a href="">categories</a>, <a href="">archives</a>, or using the search box below.</p>
+			<p>For the Record...your page could not be found. Try browsing the <a href="">categories</a>, <a href="">archives</a>, or using the search box below.</p>
 		</div> <!-- .post -->
 		<?php endif; ?>
 		<div class="navigation">

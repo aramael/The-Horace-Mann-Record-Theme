@@ -21,6 +21,7 @@
 	
 	//Get the ID of a given page
 	$about_id = 37;
+	$pastPDF_id = 938;
 	$staff_id = 47;
 	$contact_id = 41;//get_page_id( 'Contact' );
 	$policies_id = 45;//get_page_id( 'Policies' );
@@ -30,6 +31,7 @@
 	
 	//Get the URL of this page
 	$about_link = get_page_link($about_id);
+	$pastPDF_link = get_page_link($pastPDF_id);
 	$staff_link = get_page_link($staff_id);
 	$contact_link = get_page_link($contact_id);
 	$policies_link = get_page_link($policies_id);

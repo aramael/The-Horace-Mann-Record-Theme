@@ -26,7 +26,7 @@
             <p><?php the_excerpt(); ?></p>
         </div>
     <?php endwhile; ?>
-    <div class="more">&gt;&gt; more</div>                                       
+    <div class="more">&gt; &gt; more</div>                                       
 </div>
 <div class="editorsPick">
     <h1>Editor's Picks</h1>
