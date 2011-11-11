@@ -1,4 +1,4 @@
-\<?php include 'links.php';?>
+<?php include 'links.php';?>
                 </div><!--END #sidebar or END #content if Autofocus-->
                 <div style="clear:both;"></div>
             </div><!--END #page-->
