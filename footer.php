@@ -1,4 +1,4 @@
-<?php include 'links.php';?>
+\<?php include 'links.php';?>
                 </div><!--END #sidebar or END #content if Autofocus-->
                 <div style="clear:both;"></div>
             </div><!--END #page-->
@@ -10,8 +10,7 @@
             	<li><a href="<?php echo $arts_link ; ?>">Arts &amp; Entertainment</a></li>
             	<li><a href="<?php echo $features_link ; ?>">Features</a></li>
             	<li><a href="<?php echo $md_link ; ?>">Middle Division</a></li>
-            	<li><a href="<?php echo $sports_link ; ?>">Lions Den</a></li>
-                <li class="last"><a href="<?php echo $autofocus_link ; ?>">Autofocus</a></li>
+            	<li class="last"><a href="<?php echo $sports_link ; ?>">Lions Den</a></li>
             </ul>
             <div class="spacer"></div>
             <ul>

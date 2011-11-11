@@ -20,6 +20,7 @@
                     </div>-->
 					<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("sidebar") ) : ?>
 					<?php endif; ?>
+                    <div class="spacing"></div>
                     <!--<div id="followUs">
                     	<ul>
                         	<li><a href="http://eepurl.com/fmJ0E" class="emailFollow">Email</a></li>

@@ -45,7 +45,7 @@
         <h1>Fall Sports</h1>
     </div>
 </div>
-<div class="left column-2">
+<div class="left column-2 border">
     <div class="blogroll">
         <h1><a href="#">Field Hockey</a></h1>
         <ul>
@@ -87,13 +87,13 @@
         </ul>
     </div>
 </div>
-<div class="right column-2 border">
+<div class="right column-2">
     <div class="blogroll">                    
         <h1><a href="#">Girls Vollyball</a></h1>
         <ul>
             <?php query_posts('category_name=lions-den&showposts=5&tag=girls-volleyball'); ?>
                 <?php while (have_posts()) : the_post(); ?>
-                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?><span class="timestamp">-<?php the_time('m/d/Y - g:i a') ?></span></a></li>
+                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
             <li class="right more"><a href="<?php echo $blog_link;?>">&gt;&gt; more</a></li>
         </ul>                

@@ -7,6 +7,10 @@ Author: Aramael Pena-Alcantara
 Version: 1.0
 Tags: newspaper, magazine, elegant
 */
+#sidebar .spacing {
+	width:100%;
+	height:40px;
+}
 /****************************AUTOFOCUS HOME ***********************/
 html.autofocus p.headline {
 	border-bottom:1px solid #FFF;
