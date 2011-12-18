@@ -15,7 +15,7 @@ if($test_url !== false) { // test if the URL exists
 } else {  
     function load_local_jQuery() {  
         wp_deregister_script('jquery'); // initiate the function  
-        wp_register_script('jquery', bloginfo('template_url').'/js/libs/jquery-1.5.2.min.js', __FILE__, false, '1.5.2', true); // register the local file  
+        wp_register_script('jquery', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/libs/jquery-1.5.2.min.js', __FILE__, false, '1.5.2', true); // register the local file  
         wp_enqueue_script('jquery'); // enqueue the local file
     }  
 	add_action('wp_enqueue_scripts', 'load_local_jQuery'); // initiate the function  
@@ -23,26 +23,26 @@ if($test_url !== false) { // test if the URL exists
 
 //Load Javascript Files
 function record_load_scripts(){
-	if (is_home()){
-		wp_register_script('awkShowcase', bloginfo('template_url').'/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
+	if (is_home() || is_category()){
+		wp_register_script('awkShowcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
 		wp_enqueue_script('awkShowcase');
-		wp_enqueue_script('home_awkShowcase_properties', bloginfo('template_url').'/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
+		wp_enqueue_script('home_awkShowcase_properties', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
 	}
 }
 add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the function
 
 //Load CSS Style Sheets
 function record_load_styles(){
-	wp_register_style('record_main', bloginfo('template_url').'/css/main.css', false, '1.1.1', 'screen');  
-	wp_register_style('record_reset', bloginfo('template_url').'/css/reset.css', false, '2.0', 'screen');  
-	wp_register_style('record_print', bloginfo('template_url').'/css/print.css', false, '1.1.1', 'print');  
-	wp_register_style('aw-showcase', bloginfo('template_url').'/css/aw-showcase.css', false, '1.1.1', 'screen');  
+	wp_register_style('record_main', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/main.css', false, '1.1.1', 'screen');  
+	wp_register_style('record_reset', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/reset.css', false, '2.0', 'screen');  
+	wp_register_style('record_print', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/print.css', false, '1.1.1', 'print');  
+	wp_register_style('aw-showcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/aw-showcase.css', false, '1.1.1', 'screen');  
 
 	wp_enqueue_style('record_reset');
 	wp_enqueue_style('record_main');
 	wp_enqueue_style('record_print');
-	if (is_home()){
-		wp_enque_style('aw-showcase');
+	if (is_home()|| is_category()){
+		wp_enqueue_style('aw-showcase');
 	}
 }
 
@@ -211,4 +211,8 @@ function search_pagination($pages = '', $range = 2)
 ****************************************************************/
 
 remove_action('wp_head', 'wp_generator');
+add_filter('the_generator', create_function('', 'return "";'));
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
+
 ?>

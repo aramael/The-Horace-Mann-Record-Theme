@@ -158,7 +158,7 @@ html.autofocus .media-credit a {
 #sidebar input {
 	display:block;
 	margin:0 0 10px 25px;
-	background:url(images/input-bg.png) #FFF;
+	background:url(../images/input-bg.png) #FFF;
 	border:1px solid #BBB;
 	-webkit-border-radius:2px;
 	-webkit-box-shadow:0 1px 1px #fff;
@@ -193,7 +193,7 @@ html.autofocus .media-credit a {
 	width:144px;
 	height:32px;
 	padding:10px 8px 10px 10px;
-	background:url(images/socialMediaBg.png);
+	background:url(../images/socialMediaBg.png);
 }
 #followUs ul {
 	margin:-3px 0 0 0;
@@ -214,7 +214,7 @@ html.autofocus .media-credit a {
 	height:32px;
 	width:32px;
 	display:block;
-	background:url(images/socialMediaIcons.png);
+	background:url(../images/socialMediaIcons.png);
 }
 /*EMAIL*/
 	#followUs li a.emailFollow{background-position:0 0;}
@@ -264,7 +264,7 @@ html.autofocus .media-credit a {
 	color:#892846;
 }
 .featuresPost .timestamp:before {
-	content:url(images/triangle.png);
+	content:url(../images/triangle.png);
 	padding:0 5px 0 0;
 }
 /****************************SHARE BAR********************************/
@@ -441,7 +441,7 @@ html.autofocus #dsq-account-dropdown a:active {
 	text-decoration:none;
 	width:9px;
 	height:14px;
-	background: url(images/pagination.png) no-repeat;
+	background: url(../images/pagination.png) no-repeat;
 }
 .pagination a:link, .pagination a:visited {
 	color:#fff;
@@ -534,7 +534,7 @@ html.autofocus #dsq-account-dropdown a:active {
 	padding:8px 0 0 0;
 }
 .article .media-credit:before {
-	content:url(images/photoIcon.jpg);
+	content:url(../images/photoIcon.jpg);
 	padding-right:5px;
 	padding-top:2px;
 }
@@ -576,10 +576,10 @@ html.autofocus #dsq-account-dropdown a:active {
 }
 /*********************OTHER STUFF*********************/
 body {
-	background:#dcdcdc url(images/bg.png) repeat-x;padding:0;
+	background:#dcdcdc url(../images/bg.png) repeat-x;padding:0;
 }
 html.autofocus body {
-	background:#656363 url(images/autofocusBg.png) repeat-x;padding:0;
+	background:#656363 url(../images/autofocusBg.png) repeat-x;padding:0;
 }
 * {
 	margin:0;
@@ -598,10 +598,10 @@ html.autofocus body {
 	top:7px;
 }
 #logo {
-	background: url(images/logo.png);display:block;
+	background: url(../images/logo.png);display:block;
 }
 html.autofocus #logo {
-	background: url(images/autofocusLogo.png);display:block;
+	background: url(../images/autofocusLogo.png);display:block;
 }
 #header {
 	width: 900px;
@@ -666,22 +666,22 @@ html.autofocus #secondNav a:link, html.autofocus #secondNav a:visited {
 	clear:both;
 }
 #page {
-	background: url(images/content.png) repeat-y;
+	background: url(../images/content.png) repeat-y;
 }
 #page-top{
-	background:url(images/content-top.png);
+	background:url(../images/content-top.png);
 }
 #page-bottom{
-	background:url(images/content-bottom.png) no-repeat top center;
+	background:url(../images/content-bottom.png) no-repeat top center;
 }
 html.autofocus #page {
-	background: url(images/autofocus-content.png) repeat-y;
+	background: url(../images/autofocus-content.png) repeat-y;
 }
 html.autofocus #page-top{
-	background:url(images/autofocus-content-top.png);
+	background:url(../images/autofocus-content-top.png);
 }
 html.autofocus #page-bottom{
-	background:url(images/autofocus-content-bottom.png) no-repeat top center;
+	background:url(../images/autofocus-content-bottom.png) no-repeat top center;
 }
 #content{
 	position:relative;
@@ -1018,7 +1018,7 @@ html.autofocus #footer li:after {
 	width:141px;
 }
 #ceraLogo {
-	background:url(images/ceraLogo.png) top center no-repeat;
+	background:url(../images/ceraLogo.png) top center no-repeat;
 	float:left;
 	height:54px;
 	width:75px;
@@ -1031,10 +1031,10 @@ html.autofocus #footer li:after {
 	width:52px;
 }
 #footerLogo {
-	background:url(images/footerLogo.png) top center no-repeat;
+	background:url(../images/footerLogo.png) top center no-repeat;
 }
 html.autofocus #footerLogo {
-	background:url(images/autofocusFooterLogo.png) top center no-repeat;
+	background:url(../images/autofocusFooterLogo.png) top center no-repeat;
 }
 .spacer {
 	height:5px;
@@ -1042,7 +1042,7 @@ html.autofocus #footerLogo {
 }
 /*******NAVIGATION BAR*******/
 #primaryNavRight{
-		background: url(images/menuBg.png) no-repeat;
+		background: url(../images/menuBg.png) no-repeat;
 		width:29px;
 		position:absolute;
 		height:59px;
@@ -1051,7 +1051,7 @@ html.autofocus #footerLogo {
 		right: -28px;
 }
 #primaryNavLeft{
-		background: url(images/menuBg.png) no-repeat;
+		background: url(../images/menuBg.png) no-repeat;
 		width:29px;
 		position:absolute;
 		height:55px;
@@ -1063,7 +1063,7 @@ html.autofocus #footerLogo {
 	position:absolute;
 	top:14px;
 	left:14px;
-	background:url(images/menuBg.png)0 -116px;
+	background:url(../images/menuBg.png)0 -116px;
 	height: 19px;
 	width: 900px;
 	padding:11px 0px 9px 0;
@@ -1082,7 +1082,7 @@ html.autofocus #footerLogo {
 	margin-right:30px;
 }
 #primaryNav li a {
-	background: url(images/Menu.png) no-repeat;
+	background: url(../images/Menu.png) no-repeat;
 	display:block;
 	width:100%;
 	height:100%;
@@ -1126,7 +1126,7 @@ html.autofocus #footerLogo {
 #searchwrapper {
 	width:184px; /*follow your image's size*/
 	height:21px;/*follow your image's size*/
-	background-image: url(images/search.png);
+	background-image: url(../images/search.png);
 	background-repeat:no-repeat; /*important*/
 	padding:0px;
 	margin:0px;
