@@ -1,53 +1,52 @@
 <?php
-/*						HELP TEXT
+/*					  LOAD SCRIPTS & STYLES
 ****************************************************************/
-function custom_help_text($contextual_help,$screen) {
-	global $pagenow; // get what file we're on
-	switch ($pagenow) {
-	case 'profile.php':
-		$contextual_help = "<p>Your profile contains information about you that is used and displayed publicly when you write an article.</p><p> You can change your name, and password here. </p><p>If you want to change some additional piece of information please talk to the Online Editor, Aramael Pena-Alcantara or email him at <a href='mailto:Aramael_Pena_Alcantara@horacemann.org'>Aramael_Pena_Alcantara@horacemann.org</a></p>";
-		break;
-	case 'edit.php':
-		$contextual_help ="<p>This is the Articles View. You can see all of your articles that you are working on or that have already been published on the website. </p>
 
-<p>You can customize the display of this screen in a number of ways:</p>
-<ul>
-	<li>You can hide/display columns based on your needs and decide how many Articles to list per screen using the Screen Options tab.</li>
-	<li>You can filter the list of Articles by Article status using the text links in the upper left to show All, Published, Draft, or Trashed Articles. The default view is to show all Articles.</li>
-	<li>You can view Articles in a simple title list or with an excerpt. Choose the view you prefer by clicking on the icons at the top of the list on the right.</li>
-	<li>You can refine the list to show only Articles in a specific category or from a specific month by using the dropdown menus above the Articles list. Click the Filter button after making your selection. You also can refine the list by clicking on the Article author, category or tag in the Articles list.</li>
-</ul>
-<p>Hovering over a row in the Articles list will display action links that allow you to manage your Article. You can perform the following actions:</p>
-<ul>
-	<li>Edit takes you to the editing screen for that Article. You can also reach that screen by clicking on the Article title.</li>
-	<li>Quick Edit provides inline access to the metadata of your Article, allowing you to update Article details without leaving this screen.</li>
-	<li>Trash removes your Article from this list and places it in the trash, from which you can permanently delete it.</li>
-	<li>Preview will show you what your draft Article will look like if you publish it. View will take you to your live site to view the Article. Which link is available depends on your Article’s status.</li>
-</ul>
-<p>If you need help using any of these actions please talk to the Online Editor, Aramael Pena-Alcantara or email him at <a href='mailto:Aramael_Pena_Alcantara@horacemann.org'>Aramael_Pena_Alcantara@horacemann.org</a></p>";
-		break;
-	case 'post.php':
-		if (current_user_can('edit_others_posts')) {
-			$contextual_help ="";
-		}else {
-			$contextual_help ="";
-		}
-		break;
-	}
-	return $contextual_help;
+//Load jQuery from CDN with local fallback
+$url = 'http://ajax.googleapis.com/ajax/libssss/jquery/1.5.2/jquery.min.js'; // the URL to check against  
+$test_url = @fopen($url,'r'); // test parameters  
+if($test_url !== false) { // test if the URL exists  
+    function load_external_jQuery() { // load external file  
+        wp_deregister_script( 'jquery' ); // deregisters the default WordPress jQuery  
+        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'); // register the external file  
+        wp_enqueue_script('jquery'); // enqueue the external file  
+    }  
+    add_action('wp_enqueue_scripts', 'load_external_jQuery'); // initiate the function  
+} else {  
+    function load_local_jQuery() {  
+        wp_deregister_script('jquery'); // initiate the function  
+        wp_register_script('jquery', bloginfo('template_url').'/js/libs/jquery-1.5.2.min.js', __FILE__, false, '1.5.2', true); // register the local file  
+        wp_enqueue_script('jquery'); // enqueue the local file
+    }  
+	add_action('wp_enqueue_scripts', 'load_local_jQuery'); // initiate the function  
 }
 
-add_filter('contextual_help', 'custom_help_text', 10, 3);
+//Load Javascript Files
+function record_load_scripts(){
+	if (is_home()){
+		wp_register_script('awkShowcase', bloginfo('template_url').'/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
+		wp_enqueue_script('awkShowcase');
+		wp_enqueue_script('home_awkShowcase_properties', bloginfo('template_url').'/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
+	}
+}
+add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the function
 
-//Wordpress Sidebar Support
-if ( function_exists('register_sidebar') )
-	register_sidebar(array(
-	'name' => 'sidebar',
-	'before_widget' => '<div class="sidebar-box">',
-	'after_widget' => '</div>',
-	'before_title' => '<h1>',
-	'after_title' => '</h1>',
-));
+//Load CSS Style Sheets
+function record_load_styles(){
+	wp_register_style('record_main', bloginfo('template_url').'/css/main.css', false, '1.1.1', 'screen');  
+	wp_register_style('record_reset', bloginfo('template_url').'/css/reset.css', false, '2.0', 'screen');  
+	wp_register_style('record_print', bloginfo('template_url').'/css/print.css', false, '1.1.1', 'print');  
+	wp_register_style('aw-showcase', bloginfo('template_url').'/css/aw-showcase.css', false, '1.1.1', 'screen');  
+
+	wp_enqueue_style('record_reset');
+	wp_enqueue_style('record_main');
+	wp_enqueue_style('record_print');
+	if (is_home()){
+		wp_enque_style('aw-showcase');
+	}
+}
+
+add_action('wp_enqueue_scripts', 'record_load_styles');
 
 /*						POST THUMBNAILS
 ****************************************************************/
@@ -127,197 +126,6 @@ function new_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-/*						CLIENT MODIFICATIONS
-****************************************************************/
-// Admin footer modification
-function remove_footer_admin (){
-	echo '<span id="footer-thankyou">Developed by <a href="http://www.pena-alcantara.com" target="_blank">Aramael Pena-Alcantara</a></span>';
-}
-add_filter('admin_footer_text', 'remove_footer_admin');
-
-// REMOVE META BOXES FROM WORDPRESS DASHBOARD FOR ALL USERS
-function example_remove_dashboard_widgets() {
-	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' );
-	remove_meta_box( 'acx_plugin_dashboard_widget', 'dashboard', 'side' );
-}
-add_action('wp_dashboard_setup', 'example_remove_dashboard_widgets' );
-
-//ADD HELP WIDGET DASHBOARD
-function my_custom_dashboard_widgets() {
-	global $wp_meta_boxes;
-	wp_add_dashboard_widget('custom_help_widget', 'Welcome', 'custom_dashboard_help');
-}
-
-function custom_dashboard_help() {
-	echo '<p>Welcome to The Horace Mann Record\'s new website! Need help? Contact the Online Editor <a href="mailto:Aramael_Pena_Alcantara@horacemann.org">here</a>.</p>';
-}
-
-// CUSTOM ADMIN LOGIN LOGO LINK
-function change_wp_login_url(){
-	echo bloginfo('url');
-}
-add_filter('login_headerurl', 'change_wp_login_url');
-
-// CUSTOM ADMIN LOGIN LOGO & ALT TEXT
-function change_wp_login_title(){
-	echo get_option('blogname');
-}
-add_filter('login_headertitle', 'change_wp_login_title');
-
-//CHANGE 'POST' TO 'ARTICLE'
-add_filter('gettext', 'change_post_to_article');
-add_filter('ngettext', 'change_post_to_article');
-
-function change_post_to_article( $translated ) {
-	$translated = str_ireplace('Post','Article', $translated ); // ireplace is PHP5 only
-	return $translated;
-}
-
-//REMOVE COMMENTS & TOOLS MENU FROM NON-ADMINS
-function remove_menus () {
-global $menu;
-		$restricted = array(__('Comments'), _('Tools'));
-		end ($menu);
-		while (prev($menu)){
-			$value = explode(' ',$menu[key($menu)][0]);
-			if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
-		}
-}
-
-//TINYMCE BUTTOS EDIT
-
-//Remove HTML Editor for Non-Admins
-
-add_filter( 'wp_default_editor', create_function('', 'return "tinymce";') );
-function remove_html_editor() {
-	echo '<style type="text/css">#editor-toolbar #edButtonHTML, #quicktags {display: none;}</style>' . "\n";
-}
-
-// TinyMCE: First line toolbar customizations
-if( !function_exists('base_extended_editor_mce_buttons') ){
-	function base_extended_editor_mce_buttons($buttons) {
-		// The settings are returned in this array. Customize to suite your needs.
-		return array(
-			'bold', 'italic', 'strikethrough', 'separator', 
-			'undo', 'redo', 'removeformat', 'separator', 
-			'link', 'unlink', 'separator', 
-			'fullscreen'
-		);
-	}
-	add_filter("mce_buttons", "base_extended_editor_mce_buttons", 0);
-}
- 
-// TinyMCE: Second line toolbar customizations
-if( !function_exists('base_extended_editor_mce_buttons_2') ){
-	function base_extended_editor_mce_buttons_2($buttons) {
-		// The settings are returned in this array. Customize to suite your needs. An empty array is used here because I remove the second row of icons.
-		return array();
-	}
-	add_filter("mce_buttons_2", "base_extended_editor_mce_buttons_2", 0);
-}
-
-
-//Remove Extra Meta Boxes for Authors & Contributors
-function remove_meta_author_contrib() {
-	remove_meta_box('tagsdiv-post_tag','post','normal');
-	remove_meta_box( 'postimagediv' , 'post' , 'normal' );
-	remove_meta_box( 'coauthorsdiv' , 'post' , 'normal' );
-}
-
-//Display Only Posts by Author in Admin
-function posts_for_current_author($query) {
-	if($query->is_admin && !current_user_can('edit_others_posts')) {
-		global $user_ID;
-		$query->set('author',  $user_ID);
-		unset($user_ID);
-	}
-	return $query;
-}
-add_filter('pre_get_posts', 'posts_for_current_author');
-
-//Filter Featured Category from Authors & Contributors
-add_filter('list_terms_exclusions', 'yoursite_list_terms_exclusions', 10, 2);
-function yoursite_list_terms_exclusions( $exclusions, $args ) {
-  global $pagenow;
-  if (in_array($pagenow,array('post.php','post-new.php')) && 
-     !current_user_can('edit_others_posts')) {
-    $exclusions = " {$exclusions} AND t.slug NOT IN ('arts-entertainment-featured','autofocus', 'autofocus-featured', 'home-page-featured', 'lions-den-featured', 'middle-division-featured', 'news-featured', 'opinions-editorials-featured', 'uncategorized')";
-  }
-  return $exclusions;
-}
-
-/*						USER PROFILE
-****************************************************************/
-
-//REMOVE EXTRA CONTACT INFO
-function remove_extra_info( $contactmethods ) {
-	unset($contactmethods['aim']);
-	unset($contactmethods['jabber']);
-	unset($contactmethods['yim']);
-	return $contactmethods;
-}
-
-// Callback function to remove default bio field from user profile page
-function remove_plain_bio($buffer) {
-	$titles = array('#<h3>About Yourself</h3>#','#<h3>About the user</h3>#');
-	$buffer=preg_replace($titles,'<h3>Password</h3>',$buffer,1);
-	$biotable='#<h3>Password</h3>.+?<table.+?/tr>#s';
-	$buffer=preg_replace($biotable,'<h3>Password</h3> <table class="form-table">',$buffer,1);
-	return $buffer;
-}
-
-function profile_admin_buffer_start() { ob_start("remove_plain_bio"); }
-
-function profile_admin_buffer_end() { ob_end_flush(); }
-
-add_action('admin_head', 'profile_admin_buffer_start');
-add_action('admin_footer', 'profile_admin_buffer_end');
-add_action('admin_head', 'hide_profile_info');
-function hide_profile_info() {
-global $pagenow; // get what file we're on
-
-if(!current_user_can('edit_users')) { // we want admins and editors to still see it
-	switch($pagenow) {
-		case 'profile.php':
-			$output = "\n\n" . '<script type="text/javascript">' . "\n";
-			$output .= 'jQuery(document).ready(function() {' . "\n";
-			$output .= 'jQuery("form#your-profile > h3:first").hide();' . "\n"; // hide "Personal Options" header
-			$output .= 'jQuery("form#your-profile > table:first").hide();' . "\n"; // hide "Personal Options" table
-			$output .= 'jQuery("table.form-table:eq(1) tr:first").hide();' . "\n"; // hide "username"
-			$output .= 'jQuery("table.form-table:eq(1) tr:eq(3)").hide();' . "\n"; // hide "nickname"
-			$output .= 'jQuery("table.form-table:eq(1) tr:eq(4)").hide();' . "\n"; // hide "display name publicly as"
-			$output .= 'jQuery("table.form-table:eq(1)+h3").hide();' . "\n"; // hide "Contact Info" header
-			$output .= 'jQuery("table.form-table:eq(2)").hide();' . "\n"; // hide "Contact Info" table
-			$output .= 'jQuery("table.form-table:eq(3)+h3").hide();' . "\n"; // hide "Extra Profile Information" header
-			$output .= 'jQuery("table.form-table:eq(4)").hide();' . "\n"; // hide "Extra Profiel Information" table
-			$output .= '});' . "\n";
-			$output .= '</script>' . "\n\n";
-			add_filter('user_contactmethods','remove_extra_info',10,1);
-			remove_action("admin_color_scheme_picker", "admin_color_scheme_picker");
-			break;
-		default:
-			$output = '';
-		}
-	}
-	echo $output;
-}
-if(!current_user_can('edit_others_posts')){
-	add_action('admin_init','remove_meta_author_contrib');
-}
-
-if ( !current_user_can( 'edit_users' ) ) {
-	//CUSTOM DASHBOARD WIDGET
-	add_action('wp_dashboard_setup', 'my_custom_dashboard_widgets');
-	// DISABLE SHOWING UPGRADE TO EVERYONE BUT ADMIN
-	add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
-	add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
-	//REMOVE COMMENTS & TOOLS
-	add_action('admin_menu', 'remove_menus');
-	add_action('admin_head', 'remove_html_editor');
-}
-
 /*						WORDPRESS CATEGORIES
 ****************************************************************/
 
@@ -337,43 +145,6 @@ function incomplete_cat_list($separator) {
   }
 }
 
-/*					ADDITIONAL USER INFORMATION
-****************************************************************/
-add_action( 'show_user_profile', 'extra_user_profile_fields' );
-add_action( 'edit_user_profile', 'extra_user_profile_fields' );
- 
-function extra_user_profile_fields( $user ) { ?>
-<h3><?php _e("Extra profile information", "blank"); ?></h3>
- 
-<table class="form-table">
-<tr>
-<th><label for="address"><?php _e("Horace Mann Record Title"); ?></label></th>
-<td>
-<input type="text" name="address" id="address" value="<?php echo esc_attr( get_the_author_meta( 'address', $user->ID ) ); ?>" class="regular-text" /><br />
-<span class="description"><?php _e("For Record Editorial Board Use Only."); ?></span>
-</td>
-</tr>
-<tr>
-<th><label for="city"><?php _e("Class Year"); ?></label></th>
-<td>
-<input type="text" name="city" id="city" value="<?php echo esc_attr( get_the_author_meta( 'city', $user->ID ) ); ?>" class="regular-text" /><br />
-<span class="description"><?php _e("Please enter your Class Year."); ?></span>
-</td>
-</tr>
-</table>
-<?php }
- 
-add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
-add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
- 
-function save_extra_user_profile_fields( $user_id ) {
- 
-if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
- 
-update_usermeta( $user_id, 'address', $_POST['address'] );
-update_usermeta( $user_id, 'city', $_POST['city'] );
-}
-
 /*						CURRENT URL
 ****************************************************************/
 function curPageURL() {
@@ -388,7 +159,7 @@ function curPageURL() {
  return $pageURL;
 }
 
-/*						SEARCH PAGINATION
+/*						Page ID
 ****************************************************************/
 
 function get_page_id($page_slug)

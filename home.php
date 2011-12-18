@@ -5,7 +5,6 @@
 <!--START HOME PHP-->
 			<div id="content">
                 	<div class="column-1">
-               			<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/sliderProperties.js"></script>
                     	<div id="showcase" class="showcase">
                         <?php query_posts('category_name=home-page-featured&showposts=4');?>
                         <?php while (have_posts()) : the_post(); ?>

@@ -2,15 +2,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php wp_title(" | ",true, right); ?><?php bloginfo('name'); ?></title>
-		<link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/style.css" rel="stylesheet" media="screen"/>
-		<link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/print.css" rel="stylesheet" media="print" />
-		<link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/slider.css" rel="stylesheet" media="screen" />
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-		<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.aw-showcase.js"></script>
         <?php wp_head();?>
-	</head
-
-	><body>
+	</head>
+    <body>
 		<div id="container">
 			<div id="header">
             	<a href="<?php echo get_option('home');?>" id="logo">The Horace Mann Record</a>  
@@ -29,7 +23,7 @@
                 	</ul>
                 <?php endif;?>
                 	<ul class="right">
-                		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue08.pdf">Download the latest print issue</a></li>
+                		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue09.pdf">Download the latest print issue</a></li>
                     	<li class="last"><a href="<?php echo $pastPDF_link;?>">View past issues</a></li>
                 	</ul>
               </div><!--END #secondNav-->
