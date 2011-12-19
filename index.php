@@ -1,4 +1,6 @@
-<?php get_header();
+<?php
+global $is_iphone;
+get_header();
 if ( $is_iphone ){
 	if(have_posts()) : while(have_posts()) : the_post(); ?>
         <div class="preview mobile" id="<?php the_ID(); ?>">

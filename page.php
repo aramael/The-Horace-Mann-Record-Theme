@@ -3,7 +3,7 @@
  *Require all of the Links used in the navigation menus
  */
 include 'links.php';
-
+global $is_iphone;
 get_header();
 if ( $is_iphone ){
 ?>

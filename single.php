@@ -1,13 +1,19 @@
-<?php get_header();
+<?php
+global $is_iphone;
+get_header();
 if ( $is_iphone ){?>
-<div class="article mobile">
-    <h1><?php the_title();?></h1>
-    <p class="byline"><?php if(function_exists('coauthors_posts_links')){ coauthors_posts_links();}else{the_author_posts_link();}?></p>
-    <?php the_content('');?>
-    <div class="info">
-        <h3 class="timestamp right"><?php the_time('F j') ?></h3><h3 class="section left"><?php incomplete_cat_list(',');?></h3>
-    </div>
-</div>
+        <?php if (have_posts()) :?>
+            <?php while (have_posts()) : the_post();?>
+                <div class="article mobile">
+                    <h1><?php the_title();?></h1>
+                    <p class="byline"><?php if(function_exists('coauthors_posts_links')){ coauthors_posts_links();}else{the_author_posts_link();}?></p>
+                    <?php the_content('');?>
+                    <div class="info">
+                        <h3 class="timestamp right"><?php the_time('F j') ?></h3><h3 class="section left"><?php incomplete_cat_list(',');?></h3>
+                    </div>
+                </div>
+			<?php endwhile;?>
+		<?php endif;?>
 <?php }else{?>
 	<?php if ( in_category('autofocus') ) :?>
         <?php if (have_posts()) :?>

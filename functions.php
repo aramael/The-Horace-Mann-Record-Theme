@@ -23,6 +23,7 @@ if($test_url !== false) { // test if the URL exists
 
 //Load Javascript Files
 function record_load_scripts(){
+	global $is_iphone;
 	wp_register_script('awkShowcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
 	wp_register_script('home_awkShowcase_properties', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
 	wp_register_script('iphone_nav', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/iphone.nav.js', __FILE__, false, '1.0' );
@@ -30,7 +31,8 @@ function record_load_scripts(){
 	if ((is_home() || is_category()) && $is_iphone == false){
 		wp_enqueue_script('awkShowcase');
 		wp_enqueue_script('home_awkShowcase_properties');
-	}elseif($is_iphone == true){
+	}
+	if($is_iphone){
 		wp_enqueue_script('iphone_nav');
 	}
 }
@@ -38,12 +40,14 @@ add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the functio
 
 //Load CSS Style Sheets
 function record_load_styles(){
+	global $is_iphone;
 	wp_register_style('record_main', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/main.css', false, '1.1.1', 'screen');  
 	wp_register_style('record_reset', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/reset.css', false, '2.0', 'screen');  
 	wp_register_style('record_print', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/print.css', false, '1.1.1', 'print');  
 	wp_register_style('record_iphone', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/iphone.css', false, '1.0', 'screen');  
 	wp_register_style('aw-showcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/aw-showcase.css', false, '1.1.1', 'screen');  
 	if ($is_iphone){
+		wp_enqueue_style('record_reset');
 		wp_enqueue_style('record_iphone');
 	}else{
 		wp_enqueue_style('record_reset');
@@ -218,10 +222,11 @@ function search_pagination($pages = '', $range = 2)
 
 /*					    SECURITY FEATURES
 ****************************************************************/
-
 remove_action('wp_head', 'wp_generator');
-add_filter('the_generator', create_function('', 'return "";'));
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
-
+remove_action('wp_head', 'rel_canonical');
+remove_action('wp_head', 'index_rel_link' ); // index link
+remove_action('wp_head', 'start_post_rel_link'); // start link
+remove_action( 'wp_head', 'feed_links_extra', 3 );
 ?>

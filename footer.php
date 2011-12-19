@@ -1,4 +1,6 @@
-<?php include 'links.php';
+<?php
+global $is_iphone;
+include 'links.php';
 if ( $is_iphone ){?>
 	</body>
 </html>

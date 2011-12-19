@@ -1,4 +1,6 @@
-<?php get_header();
+<?php
+global $is_iphone;
+get_header();
 if ( $is_iphone ){?>
     <div class="mobile sub-header">
         <h4><?php printf( __( '%s', 'toolbox' ), '<span>' . get_search_query() . '</span>' ); ?></h4>

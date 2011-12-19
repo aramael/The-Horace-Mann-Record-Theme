@@ -1,4 +1,6 @@
-<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+<?php 
+global $is_iphone;
+$curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
 get_header();
 if ( $is_iphone ){?>
 <div class="mobile sub-header">
