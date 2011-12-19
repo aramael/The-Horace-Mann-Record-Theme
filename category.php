@@ -15,22 +15,37 @@
 include 'links.php';
 
 get_header();
-echo '<div id="content">';
+if ( $is_iphone ){?>
+    <div class="mobile sub-header">
+        <h4><?php single_cat_title(); ?></h4>
+    </div>
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <div class="preview mobile">
+            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <p><?php the_excerpt(); ?></p>
+            <div class="info">
+                <h3 class="timestamp right"><?php the_time('F j');?></h3><h3 class="section left"><?php incomplete_cat_list(',');?></h3>
+            </div>
+        </div>
+	<?php endwhile;
+	endif; ?>
 
-if (is_category("arts-entertainment")){
-	include "pages/category/category-arts-entertainment.php";
-}elseif (is_category("features")){
-	include "pages/category/category-features.php";
-}elseif (is_category("lions-den")){
-	include "pages/category/category-lions-den.php";
-}elseif (is_category("middle-division")){
-	include "pages/category/category-middle-division.php";
-}elseif (is_category("news")){
-	include "pages/category/category-news.php";
-}elseif (is_category("opinions-editorials")){
-	include "pages/category/category-opinions-editorials.php";
+<?php }else{
+	echo '<div id="content">';
+	if (is_category("arts-entertainment")){
+		include "pages/category/category-arts-entertainment.php";
+	}elseif (is_category("features")){
+		include "pages/category/category-features.php";
+	}elseif (is_category("lions-den")){
+		include "pages/category/category-lions-den.php";
+	}elseif (is_category("middle-division")){
+		include "pages/category/category-middle-division.php";
+	}elseif (is_category("news")){
+		include "pages/category/category-news.php";
+	}elseif (is_category("opinions-editorials")){
+		include "pages/category/category-opinions-editorials.php";
+	}
+	get_sidebar();
 }
-
-get_sidebar();  
 get_footer();
 ?>

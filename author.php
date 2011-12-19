@@ -1,9 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-<?php get_header();?>
+<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+get_header();
+if ( $is_iphone ){?>
+<div class="mobile sub-header">
+    <h4><?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h4>
+</div>
+    <?php if ( have_posts() ) :?>
+    		<div class="featuredCategoryTitle">
+        		<h1>Articles</h1>
+        	</div>
+			<?php full_post_list($author, $curauth->user_login) ; ?>
+    <?php endif; ?>
+<?php }else{?>
 <div id="content" class="author">
 <!-- This sets the $curauth variable -->
-    <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));?>
 	<div class="authorPhoto">
 		<?php echo get_avatar( $curauth->ID , 400, 'identicon' ); ?>
     </div>
@@ -25,5 +34,6 @@
     <?php endif; ?>
     </div>
 <!-- End Loop -->
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php get_sidebar();
+}
+get_footer(); ?>

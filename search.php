@@ -1,6 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-<?php get_header(); ?>
+<?php get_header();
+if ( $is_iphone ){?>
+    <div class="mobile sub-header">
+        <h4><?php printf( __( '%s', 'toolbox' ), '<span>' . get_search_query() . '</span>' ); ?></h4>
+    </div>
+    <form method="get" id="searchform" action="<?php bloginfo('url'); ?>/">
+        <input type="text" class="searchbox" value="Search" onClick="value=''" name="s" id="s"/>
+        <input type="submit" value="Submit" />
+    </form>
+	<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
+        <div class="preview mobile">
+            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <p><?php the_excerpt(); ?></p>
+            <div class="info">
+                <h3 class="timestamp right"><?php the_time('F j') ?></h3><h3 class="section left"><?php incomplete_cat_list(',');?></h3>
+            </div>
+        </div>        
+    <?php endwhile; else : ?>
+        <div class="preview mobile">
+            <h2><a>Please Enter a Search Term Above</a></h2>
+        </div> 
+    <?php endif; ?>
+<?php }else{ ?>
 	<div id="content" class="index">
     	<div class="searchHeader">
         	<h1>Archive Search</h1>
@@ -23,5 +43,6 @@
 		<div class="navigation">
             <?php search_pagination();?>
        	</div>
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php get_sidebar();
+}
+get_footer(); ?>
