@@ -88,13 +88,13 @@ get_header();
     </div>
     <div class="right column-2">
         <div class="blogroll">                    
-            <h1><a href="<?php echo $autofocus_link;?>">Autofocus</a></h1>
+            <h1><a href="<?php echo $features_link;?>">Features</a></h1>
             <ul>
-                <?php query_posts('category_name=autofocus&showposts=5'); ?>
+                <?php query_posts('category_name=features&showposts=5'); ?>
                     <?php while (have_posts()) : the_post(); ?>
                         <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                     <?php endwhile; ?>
-                <li class="right more"><a href="<?php echo $blog_link;?>">&gt;&gt; more</a></li>
+                <li class="right more"><a href="<?php echo $features_link;?>">&gt;&gt; more</a></li>
             </ul>
         </div>
         <div class="blogroll">          
