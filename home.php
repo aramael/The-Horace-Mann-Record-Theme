@@ -1,22 +1,6 @@
 <?php
 include 'links.php';
 get_header();
-if ( $is_iphone ){
-?>
-	<div class="mobile sub-header">
-        <h4>All Sections</h4>
-    </div>
-    <?php query_posts('showposts=10&cat=-7');
-    while (have_posts()) : the_post(); ?>
-        <div class="preview mobile">
-            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-            <p><?php the_excerpt(); ?></p>
-            <div class="info">
-                <h3 class="timestamp right"><?php the_time('F j');?></h3><h3 class="section left"><?php incomplete_cat_list(',');?></h3>
-            </div>
-        </div>
-    <?php endwhile;
-}else{
 ?>
 <div id="content">
     <div class="column-1">
@@ -111,7 +95,7 @@ if ( $is_iphone ){
                         <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                     <?php endwhile; ?>
                 <li class="right more"><a href="<?php echo $blog_link;?>">&gt;&gt; more</a></li>
-            </ul>                
+            </ul>
         </div>
         <div class="blogroll">          
             <h1><a href="<?php echo $oped_link;?>">Opinions &amp; Editorials</a></h1>
@@ -134,8 +118,5 @@ if ( $is_iphone ){
             </ul>
         </div>
     </div>
-<?php
-	get_sidebar(); 
-}
-get_footer();
-?>
+<?php get_sidebar();?>
+<?php get_footer();?>

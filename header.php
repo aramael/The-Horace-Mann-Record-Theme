@@ -1,35 +1,4 @@
-<?php
-global $is_iphone;
-include 'links.php';
-if ($is_iphone){
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><?php wp_title(" | ",true, right); ?><?php bloginfo('name'); ?></title>
-	<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
-    <?php wp_head();?>
-</head>
-<body id="shots">
-    <div class="header">
-        <h1 onclick="window.location='<?php echo get_option('home');?>'"><a href="#" id="logo">The Horace Mann Record</a></h1>
-        <ul id="nav">
-            <li>
-                <div class="sections"></div>
-                <a href="#" class="has-sub">Sections</a>
-                <ul class="tabs" style="display: none; ">
-                    <li class=""><a href="<?php echo $news_link; ?>">News</a></li>
-                    <li class=""><a href="<?php echo $oped_link; ?>">Opinions &amp; Editorials</a></li>
-                    <li class=""><a href="<?php echo $arts_link; ?>">Arts &amp; Entertainment</a></li>
-                    <li class=""><a href="<?php echo $features_link; ?>">Features</a></li>
-                    <li class=""><a href="<?php echo $md_link; ?>">Middle Divsion</a></li>
-                    <li class=""><a href="<?php echo $sports_link; ?>">Lions Den</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div><!-- END #header-->
-<?php
-}else{
-?>
+<?php include 'links.php';?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
@@ -80,4 +49,3 @@ if ($is_iphone){
 					</form>
                 </div><!--END #searchwrapper-->
                 <div id="primaryNavRight"></div>
-<?php }?>

@@ -1,10 +1,4 @@
-<?php
-global $is_iphone;
-include 'links.php';
-if ( $is_iphone ){?>
-	</body>
-</html>
-<?php }else{?>
+<?php include 'links.php';?>
                 </div><!--END #sidebar or END #content if Autofocus-->
                 <div style="clear:both;"></div>
             </div><!--END #page-->
@@ -50,4 +44,3 @@ if ( $is_iphone ){?>
         </script>
 	</body>
 </html>
-<?php }?>

@@ -229,4 +229,13 @@ remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'index_rel_link' ); // index link
 remove_action('wp_head', 'start_post_rel_link'); // start link
 remove_action( 'wp_head', 'feed_links_extra', 3 );
+
+
+// Custom Login Logo //
+
+function record_custom_login_logo() {
+    echo '<style> h1 a { background-image:url('.get_bloginfo('template_directory').'/images/logo.png) !important; }</style>';
+}
+
+add_action('login_head', 'record_custom_login_logo');
 ?>
