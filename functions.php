@@ -1,4 +1,136 @@
 <?php
+/*						THEME OPTIONS
+****************************************************************/
+add_action('admin_menu', 'record_theme_menu');
+function record_theme_menu() {
+	add_menu_page('Editor Settings', 'Editor Settings', 'edit_pages', 'record_theme_settings', 'record_theme_settings');
+	add_submenu_page( 'record_theme_settings', 'Featured Sections', 'Featured Sections', 'edit_pages', 'record-theme-settings', 'record_theme_settings');
+}
+
+function record_theme_settings(){
+	wp_enqueue_script( 'dashboard' );
+	wp_enqueue_script('jquery');
+	wp_enqueue_script( 'suggest' );
+	?>
+    <div class="wrap">
+		<?php screen_icon('themes');?><h2>Featured Section Settings</h2>
+        <div id="dashboard-widgets-wrap">
+        <div id="dashboard-widgets" class="metabox-holder">
+
+<?php
+$categories = get_categories( array('orderby' => 'name', 'hide_empty' => 0, 'category_parent' => 0 ) );
+if (sizeof($categories) % 2 == 0 ){
+	?>
+    <div id="postbox-container-1" class="postbox-container" style="width:50%;">
+  		<div id="normal-sortables" class="meta-box-sortables ui-sortable">
+			<?php
+            for ($i = 0; $i <= sizeof($categories)/2; $i++) {
+                $category = $categories[$i];
+                ?>
+               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
+                    <div class="handlediv" title="Click to toggle">
+                        <br>
+                    </div>
+                    <h3 class="hndle">
+                        <span><?php echo $category->category_name;?></span>
+                    </h3>
+                    <div class="inside">
+                        <div class="versions">
+                            <?php var_dump($category);?>
+                        <br class="clear"></div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+ 		</div>
+    </div>
+    <div id="postbox-container-2" class="postbox-container" style="width:50%;">
+        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+			<?php
+            for ($i = $i; $i <= sizeof($categories); $i++){
+                $category = $categories[$i];
+                ?>
+               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
+                    <div class="handlediv" title="Click to toggle">
+                        <br>
+                    </div>
+                    <h3 class="hndle">
+                        <span><?php echo $category->category_nicename;?></span>
+                    </h3>
+                    <div class="inside">
+                        <div class="versions">
+                            <?php var_dump($category);?>
+                        <br class="clear"></div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+    	</div>
+    </div>
+    <?php
+}else{
+	?>
+    <div id="postbox-container-1" class="postbox-container" style="width:50%;">
+  		<div id="normal-sortables" class="meta-box-sortables ui-sortable">
+			<?php
+            for ($i = 0; $i < round(sizeof($categories)/2); $i++) {
+                $category = $categories[$i];
+                ?>
+               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox">
+                    <div class="handlediv" title="Click to toggle">
+                        <br>
+                    </div>
+                    <h3 class="hndle">
+                        <span><?php echo $category->name;?></span>
+                    </h3>
+                    <div class="inside">
+                        <div class="versions">
+
+                        <br class="clear"></div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+ 		</div>
+    </div>
+    <div id="postbox-container-2" class="postbox-container" style="width:50%;">
+        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+			<?php
+            for ($i = $i; $i < sizeof($categories); $i++){
+                $category = $categories[$i];
+                ?>
+               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
+                    <div class="handlediv" title="Click to toggle">
+                        <br>
+                    </div>
+                    <h3 class="hndle">
+                        <span><?php echo $category->name;?></span>
+                    </h3>
+                    <div class="inside">
+                        <div class="versions">
+                            <?php var_dump($category);?>
+                        <br class="clear"></div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+    <?php
+}
+?>
+        </div>
+        
+
+        
+    </div>
+    <?php
+}
+
 /*					  LOAD SCRIPTS & STYLES
 ****************************************************************/
 
@@ -93,7 +225,7 @@ function my_post_image_html( $html, $post_id, $post_image_id ) {
 }
 
 /*						GOO.GL SHORT LINK
-****************************************************************/
+****************************************************************
 function googl_shortlink($url, $post_id) {
 	global $post;
 	if (!$post_id && $post) $post_id = $post->ID;
@@ -161,15 +293,15 @@ function incomplete_cat_list($separator) {
 /*						CURRENT URL
 ****************************************************************/
 function curPageURL() {
- $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
- $pageURL .= "://";
- if ($_SERVER["SERVER_PORT"] != "80") {
-  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
- } else {
-  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
- }
- return $pageURL;
+	$pageURL = 'http';
+	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	$pageURL .= "://";
+	if ($_SERVER["SERVER_PORT"] != "80") {
+	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+	} else {
+	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+	}
+	return $pageURL;
 }
 
 /*						Page ID
