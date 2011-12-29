@@ -17,8 +17,9 @@ function record_theme_category_meta($category, $tags_formatted){
             <span><?php echo $category->name;?></span>
         </h3>
         <div class="inside">
-            <div class="versions"> 
-            <div>        
+            <div class="versions">
+            <?php if($category->slug !== 'lions-den'){?>
+            <div>
             <input type="text" id="tags-<?php echo $category->slug;?>" name="category-<?php echo $category->slug;?>" />
             </div>
             <?php
@@ -41,6 +42,14 @@ function record_theme_category_meta($category, $tags_formatted){
                 });
             });
             </script>
+            <?php }else{?>
+            <?php $season = get_option("record_theme_category_".str_replace("-", "_", $category->slug));?>
+            <select id="tags-<?php echo $category->slug;?>" name="category-<?php echo $category->slug;?>" >
+            	<option value="fall" <?php if($season == "fall"){?>selected="selected"<?php }?>>Fall</option>
+                <option value="winter" <?php if($season == "winter"){?>selected="selected"<?php }?>>Winter</option>
+                <option value="spring" <?php if($season == "spring"){?>selected="selected"<?php }?>>Spring</option>
+            </select>
+            <?php }?>
             <br class="clear"></div>
         </div>
     </div>
@@ -83,6 +92,15 @@ function record_theme_settings(){
 					$deprecated = ' ';
 					$autoload = 'no';
 					add_option( $option_name, $newvalue, $deprecated, $autoload );
+				}
+			}elseif (preg_match("/^category-/", $key) && preg_match("^fall|winter|spring^", $value)){
+				$option_name = "record_theme_".str_replace("-", "_", $key);
+				if ( get_option( $option_name ) != $value ) {
+					update_option( $option_name, $value );
+				} else {
+					$deprecated = ' ';
+					$autoload = 'no';
+					add_option( $option_name, $value, $deprecated, $autoload );
 				}
 			}
 		}
