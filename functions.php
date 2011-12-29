@@ -7,126 +7,147 @@ function record_theme_menu() {
 	add_submenu_page( 'record_theme_settings', 'Featured Sections', 'Featured Sections', 'edit_pages', 'record-theme-settings', 'record_theme_settings');
 }
 
+function record_theme_category_meta($category, $tags_formatted){
+?>
+    <div id="category-<?php echo $category->slug;?>" class="postbox">
+        <div class="handlediv" title="Click to toggle">
+            <br>
+        </div>
+        <h3 class="hndle">
+            <span><?php echo $category->name;?></span>
+        </h3>
+        <div class="inside">
+            <div class="versions"> 
+            <div>        
+            <input type="text" id="tags-<?php echo $category->slug;?>" name="category-<?php echo $category->slug;?>" />
+            </div>
+            <?php
+                $name = "record_theme_category_".str_replace("-", "_", $category->slug);
+                $data = get_option($name);
+                if (!empty($data)){
+                    $pre_populate = array();
+                    foreach($data as $value){
+                        $tag = get_tags(array('include' => $value,'hide_empty' => false ));
+                        $pre_populate[] = array('id' => $value, 'name' => $tag[0]->name);
+                    }
+                    $pre_populate = json_encode($pre_populate);
+                }
+            ?>
+            <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery("#tags-<?php echo $category->slug;?>").tokenInput(<?php echo $tags_formatted;?>, {
+                    prePopulate: <?php if (isset($pre_populate) && !empty($pre_populate)){echo $pre_populate;}else{echo "[]";}?>,
+                    tokenLimit: 5
+                });
+            });
+            </script>
+            <br class="clear"></div>
+        </div>
+    </div>
+    <?php
+	unset($pre_populate);
+}
+
 function record_theme_settings(){
 	wp_enqueue_script( 'dashboard' );
-	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'suggest' );
+	wp_enqueue_script( 'jquery' );
+	
+	wp_register_script('tokeninput', get_bloginfo('stylesheet_directory').'/js/jquery.tokeninput.js', __FILE__, false, '1.6.0' );
+	wp_enqueue_script( 'tokeninput' );
+	
+	wp_register_style('token-input', get_bloginfo('stylesheet_directory').'/css/token-input.css', false, '1.6.0', 'screen');  
+	wp_enqueue_style( 'token-input' );
+	
+	/**
+	 * JSON Encode Tags
+	 */
+	$tags = get_tags(array('hide_empty' => false ));
+	$tags_formatted = array();
+	foreach($tags as $tag){
+		$tags_formatted[] = array('id' => $tag->term_id,'name' => $tag->name);
+	}
+	$tags_formatted = json_encode($tags_formatted);
+	
+	/**
+	 * Save the Theme Options
+	 *
+	 */
+	if (isset($_POST['update'])){
+		foreach($_POST as $key => $value){
+			if (preg_match("/^category-/", $key) && preg_match("^([0-9],){1,4}|[0-9]{1}^", $value)){
+				$newvalue = explode(",", $value);
+				$option_name = "record_theme_".str_replace("-", "_", $key);
+				if ( get_option( $option_name ) != $newvalue ) {
+					update_option( $option_name, $newvalue );
+				} else {
+					$deprecated = ' ';
+					$autoload = 'no';
+					add_option( $option_name, $newvalue, $deprecated, $autoload );
+				}
+			}
+		}
+		?>
+        <div id="message" class="updated"><p>Settings saved</p></div>
+        <?php
+	}
+	
+	
 	?>
     <div class="wrap">
 		<?php screen_icon('themes');?><h2>Featured Section Settings</h2>
         <div id="dashboard-widgets-wrap">
         <div id="dashboard-widgets" class="metabox-holder">
-
-<?php
-$categories = get_categories( array('orderby' => 'name', 'hide_empty' => 0, 'category_parent' => 0 ) );
-if (sizeof($categories) % 2 == 0 ){
-	?>
-    <div id="postbox-container-1" class="postbox-container" style="width:50%;">
-  		<div id="normal-sortables" class="meta-box-sortables ui-sortable">
 			<?php
-            for ($i = 0; $i <= sizeof($categories)/2; $i++) {
-                $category = $categories[$i];
+            $categories = get_categories( array('orderby' => 'name', 'hide_empty' => 0, 'category_parent' => 0, 'exclude' => '1' ) );
+            if (sizeof($categories) % 2 == 0 ){
                 ?>
-               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
-                    <div class="handlediv" title="Click to toggle">
-                        <br>
+                <form method="post" action="">
+                <div id="postbox-container-1" class="postbox-container" style="width:50%;">
+                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+                        <?php
+                        for ($i = 0; $i < sizeof($categories)/2; $i++) {
+                            record_theme_category_meta($categories[$i], $tags_formatted);
+                        }
+                        ?>
                     </div>
-                    <h3 class="hndle">
-                        <span><?php echo $category->category_name;?></span>
-                    </h3>
-                    <div class="inside">
-                        <div class="versions">
-                            <?php var_dump($category);?>
-                        <br class="clear"></div>
+                </div>
+                <div id="postbox-container-2" class="postbox-container" style="width:50%;">
+                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+                        <?php
+                        for ($i = $i; $i < sizeof($categories); $i++){
+							record_theme_category_meta($categories[$i], $tags_formatted);
+                        }
+                        ?>
+                    </div>
+                </div>
+                <input type="submit" name="update" id="update" class="button-primary" value="Update">
+                </form>
+                <?php
+            }else{
+                ?>
+                <div id="postbox-container-1" class="postbox-container" style="width:50%;">
+                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+                        <?php
+                        for ($i = 0; $i < round(sizeof($categories)/2); $i++) {
+                            record_theme_category_meta($categories[$i], $tags_formatted);
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div id="postbox-container-2" class="postbox-container" style="width:50%;">
+                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+                        <?php
+                        for ($i = $i; $i < sizeof($categories); $i++){
+                            record_theme_category_meta($categories[$i], $tags_formatted);
+                        }
+                        ?>
                     </div>
                 </div>
                 <?php
             }
             ?>
- 		</div>
-    </div>
-    <div id="postbox-container-2" class="postbox-container" style="width:50%;">
-        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-			<?php
-            for ($i = $i; $i <= sizeof($categories); $i++){
-                $category = $categories[$i];
-                ?>
-               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
-                    <div class="handlediv" title="Click to toggle">
-                        <br>
-                    </div>
-                    <h3 class="hndle">
-                        <span><?php echo $category->category_nicename;?></span>
-                    </h3>
-                    <div class="inside">
-                        <div class="versions">
-                            <?php var_dump($category);?>
-                        <br class="clear"></div>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
-    	</div>
-    </div>
-    <?php
-}else{
-	?>
-    <div id="postbox-container-1" class="postbox-container" style="width:50%;">
-  		<div id="normal-sortables" class="meta-box-sortables ui-sortable">
-			<?php
-            for ($i = 0; $i < round(sizeof($categories)/2); $i++) {
-                $category = $categories[$i];
-                ?>
-               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox">
-                    <div class="handlediv" title="Click to toggle">
-                        <br>
-                    </div>
-                    <h3 class="hndle">
-                        <span><?php echo $category->name;?></span>
-                    </h3>
-                    <div class="inside">
-                        <div class="versions">
-
-                        <br class="clear"></div>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
- 		</div>
-    </div>
-    <div id="postbox-container-2" class="postbox-container" style="width:50%;">
-        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-			<?php
-            for ($i = $i; $i < sizeof($categories); $i++){
-                $category = $categories[$i];
-                ?>
-               <div id="dashboard_<?php echo $category->cat_ID;?>" class="postbox closed">
-                    <div class="handlediv" title="Click to toggle">
-                        <br>
-                    </div>
-                    <h3 class="hndle">
-                        <span><?php echo $category->name;?></span>
-                    </h3>
-                    <div class="inside">
-                        <div class="versions">
-                            <?php var_dump($category);?>
-                        <br class="clear"></div>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
+		</div>
         </div>
-    </div>
-    <?php
-}
-?>
-        </div>
-        
-
-        
     </div>
     <?php
 }
@@ -147,7 +168,7 @@ if($test_url !== false) { // test if the URL exists
 } else {  
     function load_local_jQuery() {  
         wp_deregister_script('jquery'); // initiate the function  
-        wp_register_script('jquery', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/libs/jquery-1.5.2.min.js', __FILE__, false, '1.5.2', true); // register the local file  
+        wp_register_script('jquery', get_bloginfo('stylesheet_directory').'/js/libs/jquery-1.5.2.min.js', __FILE__, false, '1.5.2', true); // register the local file  
         wp_enqueue_script('jquery'); // enqueue the local file
     }  
 	add_action('wp_enqueue_scripts', 'load_local_jQuery'); // initiate the function  
@@ -156,9 +177,9 @@ if($test_url !== false) { // test if the URL exists
 //Load Javascript Files
 function record_load_scripts(){
 	global $is_iphone;
-	wp_register_script('awkShowcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
-	wp_register_script('home_awkShowcase_properties', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
-	wp_register_script('iphone_nav', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/js/iphone.nav.js', __FILE__, false, '1.0' );
+	wp_register_script('awkShowcase', get_bloginfo('stylesheet_directory').'/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
+	wp_register_script('home_awkShowcase_properties', get_bloginfo('stylesheet_directory').'/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
+	wp_register_script('iphone_nav', get_bloginfo('stylesheet_directory').'/js/iphone.nav.js', __FILE__, false, '1.0' );
 
 	if ((is_home() || is_category()) && $is_iphone == false){
 		wp_enqueue_script('awkShowcase');
@@ -173,11 +194,12 @@ add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the functio
 //Load CSS Style Sheets
 function record_load_styles(){
 	global $is_iphone;
-	wp_register_style('record_main', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/main.css', false, '1.1.1', 'screen');  
-	wp_register_style('record_reset', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/reset.css', false, '2.0', 'screen');  
-	wp_register_style('record_print', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/print.css', false, '1.1.1', 'print');  
-	wp_register_style('record_iphone', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/iphone.css', false, '1.0', 'screen');  
-	wp_register_style('aw-showcase', 'http://record.horacemann.org/wp-content/themes/horaceMannRecord/css/aw-showcase.css', false, '1.1.1', 'screen');  
+	wp_register_style('record_main', get_bloginfo('stylesheet_directory').'/css/main.css', false, '1.1.1', 'screen');  
+	wp_register_style('record_reset', get_bloginfo('stylesheet_directory').'/css/reset.css', false, '2.0', 'screen');  
+	wp_register_style('record_print', get_bloginfo('stylesheet_directory').'/css/print.css', false, '1.1.1', 'print');  
+	wp_register_style('record_iphone', get_bloginfo('stylesheet_directory').'/css/iphone.css', false, '1.0', 'screen');  
+	wp_register_style('aw-showcase', get_bloginfo('stylesheet_directory').'/css/aw-showcase.css', false, '1.1.1', 'screen');  
+
 	if ($is_iphone){
 		wp_enqueue_style('record_reset');
 		wp_enqueue_style('record_iphone');
