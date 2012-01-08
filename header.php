@@ -26,7 +26,7 @@
                 <?php endif;?>
                 	<ul class="right">
                 		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue09.pdf">Download the latest print issue</a></li>
-                    	<li class="last"><a href="<?php echo $pastPDF_link;?>">View past issues</a></li>
+                    	<li class="last"><a href="<?php if(post_type_exists('record_print_issues')){echo get_post_type_archive_link( 'record_print_issues');} ?>">View past issues</a></li>
                 	</ul>
               </div><!--END #secondNav-->
             </div><!-- END #header-->
