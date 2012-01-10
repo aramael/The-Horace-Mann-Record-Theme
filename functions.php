@@ -198,6 +198,7 @@ function record_load_scripts(){
 	wp_register_script('awkShowcase', get_bloginfo('stylesheet_directory').'/js/jquery.aw-showcase.js', __FILE__, false, '1.1.1', true);  
 	wp_register_script('home_awkShowcase_properties', get_bloginfo('stylesheet_directory').'/js/home.aw-showcase.properties.js', __FILE__, false, '1.0' ); 
 	wp_register_script('iphone_nav', get_bloginfo('stylesheet_directory').'/js/iphone.nav.js', __FILE__, false, '1.0' );
+	wp_register_script('PDFObject', get_bloginfo('stylesheet_directory').'/js/pdfobject.min.js', __FILE__, false, '1.2.20111123' );
 
 	if ((is_home() || is_category()) && $is_iphone == false){
 		wp_enqueue_script('awkShowcase');
@@ -205,6 +206,9 @@ function record_load_scripts(){
 	}
 	if($is_iphone){
 		wp_enqueue_script('iphone_nav');
+	}
+	if (get_post_type() == 'record_print_issues'){
+		wp_enqueue_script('PDFObject');
 	}
 }
 add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the function

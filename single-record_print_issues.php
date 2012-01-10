@@ -26,14 +26,18 @@
 			</div>
 			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e4f004469bf2e34"></script>
 			<div class="articleText">
-				<?php the_content('');?>
-
-                		<?php 
-		$doc = get_post_meta(get_the_ID(), 'record_print_issues_upload_meta_box', true);
-		if(strlen(trim($doc['url'])) > 0) {
-		?>
-
-            <div id="wp_custom_attachment">
+			<?php 
+            $doc = get_post_meta(get_the_ID(), 'record_print_issues_upload_meta_box', true);
+            if(strlen(trim($doc['url'])) > 0) {
+            ?>
+            <script type="text/javascript">
+            	window.onload = function (){
+            		var myPDF = new PDFObject({ url: "<?php echo $doc['url']; ?>" }).embed("printIssue");
+            	};
+            </script>
+            <div id="printIssue">
+            </div>
+            <div id="printIssueDownload">
                 <a href="<?php echo $doc['url']; ?>">
                     Download PDF Here
                 </a>
