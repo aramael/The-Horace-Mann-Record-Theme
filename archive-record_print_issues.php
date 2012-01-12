@@ -4,7 +4,7 @@ get_header();
 <div id="content">
 <div class="column-1">
     <div class="recent">
-        <h1>Most Recent Print Issues</h1>
+        <h1>Volume 109 Print Issues</h1>
     </div>
     <?php while (have_posts()) : the_post(); ?>
         <div class="recent">

@@ -4,7 +4,7 @@
 add_action('admin_menu', 'record_theme_menu');
 function record_theme_menu() {
 	add_menu_page('Editor Settings', 'Editor Settings', 'edit_pages', 'record_theme_settings', 'record_theme_settings');
-	add_submenu_page( 'record_theme_settings', 'Featured Sections', 'Featured Sections', 'edit_pages', 'record-theme-settings', 'record_theme_settings');
+	add_submenu_page( 'record_theme_settings', 'Editor Sections', 'Editor Sections', 'edit_pages', 'record-theme-settings', 'record_theme_settings');
 }
 
 function record_theme_category_meta($category, $tags_formatted){
@@ -116,7 +116,7 @@ function record_theme_settings(){
         <div id="dashboard-widgets-wrap">
         <div id="dashboard-widgets" class="metabox-holder">
 			<?php
-            $categories = get_categories( array('orderby' => 'name', 'hide_empty' => 0, 'category_parent' => 0, 'exclude' => '1' ) );
+            $categories = get_categories( array('orderby' => 'name', 'hide_empty' => 0, 'category_parent' => 0, 'exclude' => '1,6,8,10,12,14,16,18,7' ) );
             if (sizeof($categories) % 2 == 0 ){
                 ?>
                 <form method="post" action="">

@@ -25,7 +25,7 @@
                 	</ul>
                 <?php endif;?>
                 	<ul class="right">
-                		<li><a href="http://record.horacemann.org/wp-content/PDF/Issue09.pdf">Download the latest print issue</a></li>
+                		<li><?php query_posts('showposts=1&post_type=record_print_issues');?><?php while (have_posts()) : the_post(); ?><a href="<?php echo get_post_meta(get_the_ID(), 'record_print_issues_download', true); ?>">Download the latest print issue</a><?php endwhile; wp_reset_query();?></li>
                     	<li class="last"><a href="<?php if(post_type_exists('record_print_issues')){echo get_post_type_archive_link( 'record_print_issues');} ?>">View past issues</a></li>
                 	</ul>
               </div><!--END #secondNav-->
