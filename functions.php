@@ -170,6 +170,16 @@ function record_theme_settings(){
     <?php
 }
 
+//Wordpress Sidebar Support
+if ( function_exists('register_sidebar') )
+	register_sidebar(array(
+	'name' => 'sidebar',
+	'before_widget' => '<div class="sidebar-box">',
+	'after_widget' => '</div>',
+	'before_title' => '<h1>',
+	'after_title' => '</h1>',
+));
+
 /*					  LOAD SCRIPTS & STYLES
 ****************************************************************/
 
@@ -234,7 +244,6 @@ function record_load_styles(){
 		}
 	}
 }
-
 add_action('wp_enqueue_scripts', 'record_load_styles');
 
 /*						POST THUMBNAILS
@@ -351,8 +360,7 @@ function curPageURL() {
 /*						Page ID
 ****************************************************************/
 
-function get_page_id($page_slug)
-{
+function get_page_id($page_slug){
     $page = get_page_by_path($page_slug);
     if ($page) {
         return $page->ID;
@@ -364,8 +372,7 @@ function get_page_id($page_slug)
 /*						SEARCH PAGINATION
 ****************************************************************/
 
-function search_pagination($pages = '', $range = 2)
-{  
+function search_pagination($pages = '', $range = 2){
      $showitems = ($range * 2)+1;  
      global $paged;
      if(empty($paged)) $paged = 1;
@@ -412,6 +419,5 @@ remove_action( 'wp_head', 'feed_links_extra', 3 );
 function record_custom_login_logo() {
     echo '<style> h1 a { background-image:url('.get_bloginfo('template_directory').'/images/logo.png) !important; }</style>';
 }
-
 add_action('login_head', 'record_custom_login_logo');
 ?>
