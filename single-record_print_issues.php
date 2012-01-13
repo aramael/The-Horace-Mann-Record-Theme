@@ -51,6 +51,19 @@
                         Download PDF Here
                     </a>
                 </div><!-- #wp_custom_attachment -->
+                <div class="column-1">
+					<div class="featuredCategoryTitle">
+						<h1>Articles</h1>
+					</div>
+                    <?php query_posts('monthnum='.date('n', the_time('n')).'&day='.date('j', the_time('j')).'&year='.date('Y', the_time('Y')));?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <div class="recent">
+                            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <h3 class="timestamp"><?php the_time(F);?>&nbsp;<?php the_time(j);?></h3>
+                            <p><?php the_excerpt(); ?></p>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
 			</div>
 
 	<?php endwhile;?>
