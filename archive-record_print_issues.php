@@ -12,7 +12,10 @@ get_header();
             <h3 class="timestamp"><?php the_time(F);?>&nbsp;<?php the_time(j);?></h3>
         </div>
     <?php endwhile; ?>
-    <div class="more">&gt; &gt; more</div>                                       
+    <div class="more">&gt; &gt; more</div>  
+		<div class="navigation">
+			<?php search_pagination();?>
+		</div>                                     
 </div>
 <?php
 get_sidebar();
