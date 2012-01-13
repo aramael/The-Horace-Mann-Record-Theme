@@ -49,11 +49,11 @@
 					</form>
                 </div><!--END #searchwrapper-->
                 <div id="primaryNavRight"></div>
-                <?php if(false){?>
+                <?php if(get_option("record_theme_offline")){?>
                 	<div id="recordOffline">
                         <div class="background">
                             <h1>The Record is Offline</h1>
-                            <p>We Will Return on 01/10/2012</p>
+                            <p>We Will Return to Our Reglular Publishing Schedule on <?php echo date('m / j / Y', get_option('record_theme_offline_time'));?></p>
                         </div>
                     </div>
 				<?php }?>

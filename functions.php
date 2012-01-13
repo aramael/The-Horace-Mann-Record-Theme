@@ -56,50 +56,112 @@ function record_theme_category_meta($category, $tags_formatted){
     <?php
 	unset($pre_populate);
 }
+//WP-CRON ACTION FOR OFFLINE STATUS CHANGE
+add_action( 'record_offline_status_change', 'record_offline_status_change' );
+function record_offline_status_change() {
+	if(get_option( "record_theme_offline" ) !== false ){
+		update_option( "record_theme_offline", false );
+	}else{
+		add_option( "record_theme_offline", false, ' ', 'no' );
+	}
+	if(get_option( "record_theme_offline_time" ) !== false ){
+		update_option( "record_theme_offline_time", false );
+	}else{
+		add_option( "record_theme_offline_time", false, ' ', 'no' );
+	}
+	wp_clear_scheduled_hook('record_offline_status_change');
+}
 
 function record_global_settings(){
+	if (isset($_POST['submit'])){
+		if (isset($_POST['offline']) && $_POST['offline'] == "on"){
+			if(get_option( "record_theme_offline" ) !== true ){
+				update_option( "record_theme_offline", true );
+			}else{
+				add_option( "record_theme_offline", true, ' ', 'no' );
+			}
+			
+			$date = date("U", mktime(0, 0, 0, $_POST['mm'], $_POST['jj'], $_POST['YY']));
+			if(get_option( "record_theme_offline_time" ) !== $date ){
+				update_option( "record_theme_offline_time", $date );
+			}else{
+				add_option( "record_theme_offline_time", $date, ' ', 'no' );
+			}
+			
+			if( !wp_next_scheduled( 'record_offline_status_change' ) ) {
+			   wp_schedule_single_event( $date, 'record_offline_status_change' );
+			}
+		}else{
+			if(get_option( "record_theme_offline" ) !== false ){
+				update_option( "record_theme_offline", false );
+			}else{
+				add_option( "record_theme_offline", false, ' ', 'no' );
+			}
+			if(get_option( "record_theme_offline_time" ) !== false ){
+				update_option( "record_theme_offline_time", false );
+			}else{
+				add_option( "record_theme_offline_time", false, ' ', 'no' );
+			}
+			wp_clear_scheduled_hook('record_offline_status_change');
+		}
+	}
+	wp_register_script('iphone-checkbox', get_bloginfo('stylesheet_directory').'/js/iphone-style-checkboxes.js', __FILE__, false, '1.0', true);
+	wp_enqueue_script('iphone-checkbox');
+	
+	wp_register_style('iphone-checkbox', get_bloginfo('stylesheet_directory').'/css/iphone-css.css', false, '1.0', 'screen');  
+	wp_enqueue_style('iphone-checkbox');
+
 	wp_enqueue_script( 'jquery' );
 	?>
     <div class="wrap">
 		<?php screen_icon('themes');?><h2>Record Global Settings</h2>
-
-<form method="post" action="options.php">
-				<table class="form-table">
-					<tr valign="top">
-						<th scope="row">Input type checkbox</th>
-						<td>
-							<fieldset>
-								<legend class="screen-reader-text"><span>Fieldset Example</span></legend>
-								<label for="users_can_register">
-									<input name="" type="checkbox" id="" value="1" />
-								</label>
-							</fieldset>
-						</td>
-					</tr>
-					<tr valign="top">
-						<th scope="row"><label for="">Will Return On</label></th>
-						<td>
-                        	<?php $cur_month = date('m');?>
-                            <select id="mm" name="mm" tabindex="4">
-                                <option value="01">01-Jan</option>
-                                <option value="02">02-Feb</option>
-                                <option value="03">03-Mar</option>
-                                <option value="04">04-Apr</option>
-                                <option value="05">05-May</option>
-                                <option value="06">06-Jun</option>
-                                <option value="07">07-Jul</option>
-                                <option value="08">08-Aug</option>
-                                <option value="09">09-Sep</option>
-                                <option value="10">10-Oct</option>
-                                <option value="11">11-Nov</option>
-                                <option value="12">12-Dec</option>
-                            </select>
-                            <input type="text" id="jj" name="jj" value="27" size="2" maxlength="2" tabindex="4" autocomplete="off">, <input type="text" id="aa" name="aa" value="2011" size="4" maxlength="4" tabindex="4" autocomplete="off">
-						</td>
-					</tr>
-				</table>
-			</form>
-
+        <form method="post" action="">
+        	<h3>Put Record Offline</h3>
+            <table class="form-table">
+                <tr valign="top" class="onchange">
+                    <th scope="row">Is the Record in regular publicaiton?</th>
+                    <td>
+                        <input type="checkbox" id="onchange" name="offline" <?php if(get_option('record_theme_offline')){?>checked="checked"<?php }?>/>
+                    </td>
+                </tr>
+                <tr valign="top" class="willReturn" <?php if(!get_option('record_theme_offline')){?>style="display:none;"<?php }?>>
+                    <th scope="row"><label for="">Will Return On</label></th>
+                    <td>
+                        <?php
+                        	$month = (get_option("record_theme_offline"))? date('m', get_option('record_theme_offline_time')): date('m');
+							$day = (get_option("record_theme_offline"))? date('j', get_option('record_theme_offline_time')): date('j')+1;
+							$year = (get_option("record_theme_offline"))? date('Y', get_option('record_theme_offline_time')): date('Y');
+						?>
+                        <select id="mm" name="mm" tabindex="4">
+                            <option value="01" <?php if($month == "01"){?>selected="selected"<?php }?>>01-Jan</option>
+                            <option value="02" <?php if($month == "02"){?>selected="selected"<?php }?>>02-Feb</option>
+                            <option value="03" <?php if($month == "03"){?>selected="selected"<?php }?>>03-Mar</option>
+                            <option value="04" <?php if($month == "04"){?>selected="selected"<?php }?>>04-Apr</option>
+                            <option value="05" <?php if($month == "05"){?>selected="selected"<?php }?>>05-May</option>
+                            <option value="06" <?php if($month == "06"){?>selected="selected"<?php }?>>06-Jun</option>
+                            <option value="07" <?php if($month == "07"){?>selected="selected"<?php }?>>07-Jul</option>
+                            <option value="08" <?php if($month == "08"){?>selected="selected"<?php }?>>08-Aug</option>
+                            <option value="09" <?php if($month == "09"){?>selected="selected"<?php }?>>09-Sep</option>
+                            <option value="10" <?php if($month == "10"){?>selected="selected"<?php }?>>10-Oct</option>
+                            <option value="11" <?php if($month == "11"){?>selected="selected"<?php }?>>11-Nov</option>
+                            <option value="12" <?php if($month == "12"){?>selected="selected"<?php }?>>12-Dec</option>
+                        </select>
+                        <input type="text" id="jj" name="jj" value="<?php echo $day;?>" size="2" maxlength="2" tabindex="4" autocomplete="off">,
+                        <input type="text" id="YY" name="YY" value="<?php echo $year;?>" size="4" maxlength="4" tabindex="4" autocomplete="off">
+                    </td>
+                </tr>
+            </table>
+			<script type="text/javascript" charset="utf-8">
+            jQuery(window).load(function() {
+              var onchange_checkbox = (jQuery('.onchange :checkbox')).iphoneStyle({
+                onChange: function(elem, value) { 
+                  jQuery('.willReturn').toggle('slow');
+                }
+              });
+            });
+            </script>
+          <input class="button-primary" type="submit" name="submit" value="Save" /> 
+        </form>
     </div>
     <?php
 }
@@ -277,12 +339,16 @@ function record_load_styles(){
 	wp_register_style('record_reset', get_bloginfo('stylesheet_directory').'/css/reset.css', false, '2.0', 'screen');  
 	wp_register_style('record_print', get_bloginfo('stylesheet_directory').'/css/print.css', false, '1.1.1', 'print');  
 	wp_register_style('record_iphone', get_bloginfo('stylesheet_directory').'/css/iphone.css', false, '1.0', 'screen');  
+	wp_register_style('record_offline', get_bloginfo('stylesheet_directory').'/css/offline.css', false, '1.0', 'screen');  
 	wp_register_style('aw-showcase', get_bloginfo('stylesheet_directory').'/css/aw-showcase.css', false, '1.1.1', 'screen');  
 
 	if ($is_iphone){
 		wp_enqueue_style('record_reset');
 		wp_enqueue_style('record_iphone');
 	}else{
+		if (get_option("record_theme_offline")){
+			wp_enqueue_style('record_offline');
+		}
 		wp_enqueue_style('record_reset');
 		wp_enqueue_style('record_main');
 		wp_enqueue_style('record_print');
