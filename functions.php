@@ -3,8 +3,8 @@
 ****************************************************************/
 add_action('admin_menu', 'record_theme_menu');
 function record_theme_menu() {
-	add_menu_page('Editor Settings', 'Editor Settings', 'edit_pages', 'record_theme_settings', 'record_theme_settings');
-	add_submenu_page( 'record_theme_settings', 'Editor Sections', 'Editor Sections', 'edit_pages', 'record-theme-settings', 'record_theme_settings');
+	add_menu_page('Editor Settings', 'Record Settings', 'edit_pages', 'record_theme_settings', 'record_global_settings');
+	add_submenu_page( 'record_theme_settings', 'Section Settings', 'Section Settings', 'edit_pages', 'record-theme-settings', 'record_section_settings');
 }
 
 function record_theme_category_meta($category, $tags_formatted){
@@ -57,7 +57,17 @@ function record_theme_category_meta($category, $tags_formatted){
 	unset($pre_populate);
 }
 
-function record_theme_settings(){
+function record_global_settings(){
+	wp_enqueue_script( 'jquery' );
+	?>
+    <div class="wrap">
+		<?php screen_icon('themes');?><h2>Featured Section Settings</h2>
+        This is the global settings page
+    </div>
+    <?php
+}
+
+function record_section_settings(){
 	wp_enqueue_script( 'dashboard' );
 	wp_enqueue_script( 'jquery' );
 	
