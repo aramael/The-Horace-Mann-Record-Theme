@@ -61,8 +61,45 @@ function record_global_settings(){
 	wp_enqueue_script( 'jquery' );
 	?>
     <div class="wrap">
-		<?php screen_icon('themes');?><h2>Featured Section Settings</h2>
-        This is the global settings page
+		<?php screen_icon('themes');?><h2>Record Global Settings</h2>
+
+<form method="post" action="options.php">
+				<table class="form-table">
+					<tr valign="top">
+						<th scope="row">Input type checkbox</th>
+						<td>
+							<fieldset>
+								<legend class="screen-reader-text"><span>Fieldset Example</span></legend>
+								<label for="users_can_register">
+									<input name="" type="checkbox" id="" value="1" />
+								</label>
+							</fieldset>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><label for="">Will Return On</label></th>
+						<td>
+                        	<?php $cur_month = date('m');?>
+                            <select id="mm" name="mm" tabindex="4">
+                                <option value="01">01-Jan</option>
+                                <option value="02">02-Feb</option>
+                                <option value="03">03-Mar</option>
+                                <option value="04">04-Apr</option>
+                                <option value="05">05-May</option>
+                                <option value="06">06-Jun</option>
+                                <option value="07">07-Jul</option>
+                                <option value="08">08-Aug</option>
+                                <option value="09">09-Sep</option>
+                                <option value="10">10-Oct</option>
+                                <option value="11">11-Nov</option>
+                                <option value="12">12-Dec</option>
+                            </select>
+                            <input type="text" id="jj" name="jj" value="27" size="2" maxlength="2" tabindex="4" autocomplete="off">, <input type="text" id="aa" name="aa" value="2011" size="4" maxlength="4" tabindex="4" autocomplete="off">
+						</td>
+					</tr>
+				</table>
+			</form>
+
     </div>
     <?php
 }

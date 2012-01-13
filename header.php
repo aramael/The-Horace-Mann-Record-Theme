@@ -49,3 +49,11 @@
 					</form>
                 </div><!--END #searchwrapper-->
                 <div id="primaryNavRight"></div>
+                <?php if(false){?>
+                	<div id="recordOffline">
+                        <div class="background">
+                            <h1>The Record is Offline</h1>
+                            <p>We Will Return on 01/10/2012</p>
+                        </div>
+                    </div>
+				<?php }?>
