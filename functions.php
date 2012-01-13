@@ -119,13 +119,14 @@ function record_global_settings(){
         	<h3>Put Record Offline</h3>
             <table class="form-table">
                 <tr valign="top" class="onchange">
-                    <th scope="row">Is the Record in regular publicaiton?</th>
+                    <th scope="row">Record Offline Status</th>
                     <td>
                         <input type="checkbox" id="onchange" name="offline" <?php if(get_option('record_theme_offline')){?>checked="checked"<?php }?>/>
+                        <p class="description">This option displays a banner on every page stating that The Record is not following a normal publication schedule</p>
                     </td>
                 </tr>
                 <tr valign="top" class="willReturn" <?php if(!get_option('record_theme_offline')){?>style="display:none;"<?php }?>>
-                    <th scope="row"><label for="">Will Return On</label></th>
+                    <th scope="row"><label for="">The Record Will Return On:</label></th>
                     <td>
                         <?php
                         	$month = (get_option("record_theme_offline"))? date('m', get_option('record_theme_offline_time')): date('m');
@@ -148,6 +149,7 @@ function record_global_settings(){
                         </select>
                         <input type="text" id="jj" name="jj" value="<?php echo $day;?>" size="2" maxlength="2" tabindex="4" autocomplete="off">,
                         <input type="text" id="YY" name="YY" value="<?php echo $year;?>" size="4" maxlength="4" tabindex="4" autocomplete="off">
+                        <p class="description">Please put the date when the next Record Issue will be printed</p>
                     </td>
                 </tr>
             </table>
@@ -157,7 +159,7 @@ function record_global_settings(){
                 onChange: function(elem, value) { 
                   jQuery('.willReturn').toggle('slow');
                 }
-              });
+              ,checkedLabel: 'OFFLINE', uncheckedLabel: 'NORMAL'});
             });
             </script>
           <input class="button-primary" type="submit" name="submit" value="Save" /> 

@@ -52,6 +52,6 @@
 				</table>
 			</div>
 	<?php endwhile;?>
-<?php endif;?>    
+<?php endif;?>
 <?php get_sidebar(); ?>  
 <?php get_footer(); ?>
