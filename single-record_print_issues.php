@@ -55,7 +55,7 @@
 					<div class="featuredCategoryTitle">
 						<h1>Articles</h1>
 					</div>
-                    <?php query_posts('monthnum='.date('n', the_time('n')).'&day='.date('j', the_time('j')).'&year='.date('Y', the_time('Y')));?>
+                    <?php query_posts('monthnum='.the_time('n').'&day='.the_time('j').'&year='.the_time('Y'));?>
                     <?php while (have_posts()) : the_post(); ?>
                         <div class="recent">
                             <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -63,6 +63,7 @@
                             <p><?php the_excerpt(); ?></p>
                         </div>
                     <?php endwhile; ?>
+                    <?php wp_reset_query();?>
                 </div>
 			</div>
 

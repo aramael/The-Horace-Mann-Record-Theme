@@ -72,7 +72,7 @@ html.autofocus #showcase {
 	/* Navigation arrows */
 	.showcase-arrow-previous, .showcase-arrow-next {
 		position: absolute;
-		background: url('images/arrows.png');
+		background: url('../images/arrows.png');
 		width: 33px;
 		height: 33px;
 		cursor: pointer;
@@ -119,7 +119,7 @@ html.autofocus #showcase {
 		}
 		/* Styling the tooltips */
 		.showcase-plus-anchor {
-			background-image: url('images/plus.png');
+			background-image: url('../images/plus.png');
 			background-repeat: no-repeat;
 		}
 		
