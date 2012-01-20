@@ -46,7 +46,7 @@
 							<h2 class="shortLink"><?php echo wp_get_shortlink();?></h2>
 						</td>
 						<td>
-							<?php echo qrcode_show(); ?>
+							<img src=" https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=<?php echo urlencode(wp_get_shortlink());?>" />
 						</td>
 					</tr>
 				</table>
