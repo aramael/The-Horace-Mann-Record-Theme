@@ -124,6 +124,12 @@ html.autofocus .media-credit a {
 	width:238px;
 	text-align:justify;
 }
+#sidebarLogo{
+	width:221px;
+	height:177px;
+	background:url(../images/logos.png);
+	background-position:0 -163px;
+}
 #sidebar h1 {
 	font:bold 18px Arial, Helvetica, sans-serif;
 	text-transform:uppercase;
@@ -605,16 +611,18 @@ html.autofocus body {
 }
 #logo {
 	width: 303px;
-	height: 50px;
+	height: 36px;
 	text-indent: -9999em;
 	position:absolute;
-	top:7px;
+	background: url(../images/logos.png);
+	top:17px;
 }
 #logo {
-	background: url(../images/logo.png);display:block;
+	display:block;
+	background-position:0 0;
 }
 html.autofocus #logo {
-	background: url(../images/autofocusLogo.png);display:block;
+	background-position:0 45px;
 }
 #header {
 	width: 900px;
@@ -1031,23 +1039,25 @@ html.autofocus #footer li:after {
 	width:141px;
 }
 #ceraLogo {
-	background:url(../images/ceraLogo.png) top center no-repeat;
+	background: url(../images/logos.png);
+	background-position:-345px -31px;
 	float:left;
 	height:54px;
-	width:75px;
+	width:78px;
 }
 #footerLogo {
+	background: url(../images/logos.png);
 	border-right:1px solid #58020f;
 	float:left;
-	height:54px;
-	margin:0 10px 0 0;
-	width:52px;
+	height:42px;
+	margin:10px 10px 0 0;
+	width:43px;
 }
 #footerLogo {
-	background:url(../images/footerLogo.png) top center no-repeat;
+	background-position:-303px 0;
 }
 html.autofocus #footerLogo {
-	background:url(../images/autofocusFooterLogo.png) top center no-repeat;
+	background-position:-303px -41px;
 }
 .spacer {
 	height:5px;
