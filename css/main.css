@@ -622,7 +622,7 @@ html.autofocus body {
 	background-position:0 0;
 }
 html.autofocus #logo {
-	background-position:0 45px;
+	background-position:0 -46px;
 }
 #header {
 	width: 900px;
