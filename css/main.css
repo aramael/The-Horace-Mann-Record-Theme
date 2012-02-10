@@ -988,6 +988,10 @@ ul.categories, ul.categories li {
 	max-height:138px;
 	max-width:138px;
 }
+#secondNav li.last:after {
+	display:inline;
+	content:"";
+}
 /*********FOOTER***********/
 #footer ul, #footer li {
 	display: inline;
@@ -1062,119 +1066,4 @@ html.autofocus #footerLogo {
 .spacer {
 	height:5px;
 	width:100%;
-}
-/*******NAVIGATION BAR*******/
-#primaryNavRight{
-		background: url(../images/menuBg.png) no-repeat;
-		width:29px;
-		position:absolute;
-		height:59px;
-		top: 11px;
-		background-position: 0 0;
-		right: -28px;
-}
-#primaryNavLeft{
-		background: url(../images/menuBg.png) no-repeat;
-		width:29px;
-		position:absolute;
-		height:55px;
-		top: 13px;
-		background-position: 0 -59px;
-		left: -15px;
-}
-#primaryNav {
-	position:absolute;
-	top:14px;
-	left:14px;
-	background:url(../images/menuBg.png)0 -116px;
-	height: 19px;
-	width: 900px;
-	padding:11px 0px 9px 0;
-	margin:0px 0 10px 0;
-	z-index:900;
-}
-#primaryNav ul, #primaryNav li {
-	display: inline;
-	margin: 0;
-	padding: 0;
-}
-#primaryNav li {
-	overflow:hidden;
-	text-indent:-9999px;
-	float:left;
-	margin-right:30px;
-}
-#primaryNav li a {
-	background: url(../images/Menu.png) no-repeat;
-	display:block;
-	width:100%;
-	height:100%;
-}
-/*NEWS*/
-#primaryNav li a.news{width: 30px; height: 10px;}
-	#primaryNav li a.news{background-position:0 0;}
-	#primaryNav li a.news:hover{background-position:0 -14px;}
-	#primaryNav li a.news:selected{background-position:0 0;}
-/*OPINIONS & EDITORIALS*/
-#primaryNav li a.opEd{width: 122px; height: 10px;}
-	#primaryNav li a.opEd{background-position:-31px 0;}
-	#primaryNav li a.opEd:hover{background-position:-31px -14px;}
-	#primaryNav li a.opEd:selected{background-position:-31px 0;}
-/*ARTS & ENTERTAINMENT*/
-#primaryNav li a.arts{width: 120px; height: 10px;}
-	#primaryNav li a.arts{background-position:-153px 0;}
-	#primaryNav li a.arts:hover{background-position:-153px -14px;}
-	#primaryNav li a.arts:selected{background-position:-153px 0;}
-/*FEATURES*/
-#primaryNav li a.features{width: 48px; height: 10px;}
-	#primaryNav li a.features{background-position:-273px 0;}
-	#primaryNav li a.features:hover{background-position:-273px -14px;}
-	#primaryNav li a.features:selected{background-position:-273px 0;}
-/*MIDDLE DIVISION*/
-#primaryNav li a.MD{width: 88px; height: 10px;}
-	#primaryNav li a.MD{background-position:-322px 0;}
-	#primaryNav li a.MD:hover{background-position:-322px -14px;}
-	#primaryNav li a.MD:selected{background-position:-322px 0;}
-/*LIONS DEN*/
-#primaryNav li a.LD{width: 60px; height: 10px;}
-	#primaryNav li a.LD{background-position:-410px 0;}
-	#primaryNav li a.LD:hover{background-position:-410px -14px;}
-	#primaryNav li a.LD:selected{background-position:-410px 0;}
-/*AUTOFOCUS*/
-#primaryNav li a.autofocus{width: 60px; height: 10px;}
-	#primaryNav li a.autofocus{background-position:-470px 0;}
-	#primaryNav li a.autofocus:hover{background-position:-470px -14px;}
-	#primaryNav li a.autofocus:selected{background-position:-470px 0;}
-/*SEARCH*/
-#searchwrapper {
-	width:184px; /*follow your image's size*/
-	height:21px;/*follow your image's size*/
-	background-image: url(../images/search.png);
-	background-repeat:no-repeat; /*important*/
-	padding:0px;
-	margin:0px;
-	position:relative; /*important*/
-	top:6px;
-	z-index:999;
-	left:735px;
-}
-#searchwrapper form { display:inline ; }
-.searchbox {
-	border:0px; /*important*/
-	background-color:transparent; /*important*/
-	position:absolute; /*important*/
-	top:0px;
-	left:9px;
-	width:145px;
-	height:21px;
-	outline:none;
-}
-.searchbox_submit {
-	border:0px; /*important*/
-	background-color:transparent; /*important*/
-	position:absolute; /*important*/
-	top:4px;
-	left:155px;
-	width:16px;
-	height:15px;
 }
