@@ -338,11 +338,11 @@ add_action('wp_enqueue_scripts', 'record_load_scripts'); // initiate the functio
 function record_load_styles(){
 	global $is_iphone;
 	wp_register_style('record_main', get_bloginfo('stylesheet_directory').'/css/main.css', false, '1.1.1', 'screen');  
-	wp_register_style('record_reset', get_bloginfo('stylesheet_directory').'/css/reset.css', false, '2.0', 'screen');  
+	wp_register_style('record_reset', get_bloginfo('stylesheet_directory').'/css/libs/reset.css', false, '2.0', 'screen');  
 	wp_register_style('record_print', get_bloginfo('stylesheet_directory').'/css/print.css', false, '1.1.1', 'print');  
 	wp_register_style('record_iphone', get_bloginfo('stylesheet_directory').'/css/iphone.css', false, '1.0', 'screen');  
 	wp_register_style('record_offline', get_bloginfo('stylesheet_directory').'/css/offline.css', false, '1.0', 'screen');  
-	wp_register_style('aw-showcase', get_bloginfo('stylesheet_directory').'/css/aw-showcase.css', false, '1.1.1', 'screen');  
+	wp_register_style('aw-showcase', get_bloginfo('stylesheet_directory').'/css/libs/aw-showcase.css', false, '1.1.1', 'screen');  
 
 	if ($is_iphone){
 		wp_enqueue_style('record_reset');
