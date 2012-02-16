@@ -4,27 +4,26 @@
             </div><!--END #page-->
             	<div id="page-bottom"></div><!--END #page-bottom-->
             <div id="footer">
-            <ul>
-            	<li><a href="<?php echo $news_link ; ?>">News</a></li>
-            	<li><a href="<?php echo $oped_link ; ?>">Opinions &amp; Editorials</a></li>
-            	<li><a href="<?php echo $arts_link ; ?>">Arts &amp; Entertainment</a></li>
-            	<li><a href="<?php echo $features_link ; ?>">Features</a></li>
-            	<li><a href="<?php echo $md_link ; ?>">Middle Division</a></li>
-            	<li class="last"><a href="<?php echo $sports_link ; ?>">Lions Den</a></li>
-            </ul>
-            <div class="spacer"></div>
-            <ul>
-            	<li><a href="<?php echo $about_link;?>">About</a></li>
-            	<li><a href="<?php echo $staff_link;?>">Staff</a></li>
-            	<li><a href="<?php echo $policies_link;?>">Policies</a></li>
-            	<li><a href="<?php echo $principles_link;?>">Principles</a></li>
-            	<li class="last"><a href="<?php echo $contact_link;?>">Contact Us</a></li>
-            </ul>  
-            <br/>     
-            <div id="footerLogoSection">
-	            <div id="footerLogo"></div>
-	            <div id="ceraLogo"></div>
-			</div>
+                <ul>
+                    <li><a href="<?php echo $news_link;?>">News</a></li>
+                    <li><a href="<?php echo $oped_link;?>">Opinions &amp; Editorials</a></li>
+                    <li><a href="<?php echo $arts_link;?>">Arts &amp; Entertainment</a></li>
+                    <li><a href="<?php echo $features_link;?>">Features</a></li>
+                    <li><a href="<?php echo $md_link;?>">Middle Division</a></li>
+                    <li><a href="<?php echo $sports_link; ?>">Lions Den</a></li>
+                </ul>
+                <ul>
+                    <li><a href="<?php echo $about_link;?>">About</a></li>
+                    <li><a href="<?php echo $staff_link;?>">Staff</a></li>
+                    <li><a href="<?php echo $policies_link;?>">Policies</a></li>
+                    <li><a href="<?php echo $principles_link;?>">Principles</a></li>
+                    <li><a href="<?php echo $contact_link;?>">Contact Us</a></li>
+                </ul>  
+                <br/>     
+                <div id="logo-container">
+                    <div class="logo"></div>
+                    <div id="ceraLogo"></div>
+                </div>
             </div><!--END #footer-->            
 
     	</div><!--END #container-->

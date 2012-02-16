@@ -37,7 +37,7 @@
 			<div class="articleText">
 				<?php the_content('');?>
 			</div>
-			<div id="printBar">
+			<div id="printBar" class="print">
 				<table width="100%%" border="0">
 					<tr>
 						<td>

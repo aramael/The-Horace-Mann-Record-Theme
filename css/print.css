@@ -1,11 +1,32 @@
-/* -- Hide screen specific elements -- */
-#header, #page-top, #primaryNavLeft, #primaryNav, #searchwrapper, #primaryNavRight, .edit, .shareBar, #disqus_thread, #commentDisclaimer, #sidebar, #page-bottom, #footer, input, .addthis_toolbox, .addthis_default_style, #authorBio {
-display: none;
+@charset "UTF-8";
+/*------------------------------------*\
+	~PRINT
+\*------------------------------------*/
+
+/**
+ *Hide screen specific elements
+ */
+#header,
+#page-top,
+#primaryNavLeft,
+#primaryNav,
+#searchwrapper,
+#primaryNavRight,
+.edit,
+.shareBar,
+#disqus_thread,
+#commentDisclaimer,
+#sidebar,
+#page-bottom,
+#footer, input,
+.addthis_toolbox,
+.addthis_default_style {
+	display: none;
 }
 
 body {
-background: #FFF;
-color: #000;
+	background: #FFF;
+	color: #000;
 }
 #printBar {
 	font:12px "Lucida Sans Unicode", "Lucida Grande", sans-serif;

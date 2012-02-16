@@ -1,3 +1,11 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~OFFLINE
+\*------------------------------------*/
+
+/**
+ * Offline Header
+ */
 #recordOffline{
 	margin:12px 0 0 13px;
 	padding:10px 0 10px 0;
@@ -19,6 +27,9 @@
 	font: 18px/27px 'ChunkFiveRegular', Arial, sans-serif;
 	text-align:center;
 }
+/**
+ * Import Chunk Five Font
+ */
 @font-face {
     font-family: 'ChunkFiveRegular';
     src: url('../fonts/Chunkfive-webfont.eot');

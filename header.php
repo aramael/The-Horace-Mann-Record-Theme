@@ -9,7 +9,7 @@
     <body>
 		<div id="container">
 			<div id="header">
-            	<a href="<?php echo get_option('home');?>" id="logo">The Horace Mann Record</a>  
+            	<a href="<?php echo get_option('home');?>" class="logo">The Horace Mann Record</a>  
                 <div id="secondNav">
                 <?php if(current_user_can('read_private_pages')) :?>
                 	<ul class="left">
