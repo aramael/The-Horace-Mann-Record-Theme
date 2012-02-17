@@ -6,18 +6,15 @@
 		<title><?php wp_title(" | ",true, right); ?><?php bloginfo('name'); ?></title>
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/article.css" type="text/css" rel="stylesheet"/>
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/author.css" type="text/css" rel="stylesheet" />
-        <link href="<?php bloginfo('template_directory'); ?>/css/screen/autofocus.css" type="text/css" rel="stylesheet" />
-        <link href="<?php bloginfo('template_directory'); ?>/css/screen/comment.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/footer.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/offline.css" type="text/css" rel="stylesheet" />
+        <link href="<?php bloginfo('template_directory'); ?>/css/screen/layout.css" type="text/css" rel="stylesheet" />
+
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/print.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/search.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/share.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/nav.css" type="text/css" rel="stylesheet" />
         <link href="<?php bloginfo('template_directory'); ?>/css/screen/sidebar.css" type="text/css" rel="stylesheet" />
-
-
-
         <?php wp_head();?>
 	</head>
     <body>

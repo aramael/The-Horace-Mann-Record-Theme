@@ -1,52 +1,51 @@
-.searchHeader h1 {
-	font-family:Georgia, "Times New Roman", Times, serif;
-	font-size:48px;
-	color:#892846;
-}
-.searchHeader h2 {
-	font-family:Georgia, "Times New Roman", Times, serif;
-	font-size:24px;
-	color:#5e5d5d;
-}
 .searchHeader {
 	border-bottom:2px solid #892846;
 }
+	.searchHeader h1 {
+		color:#892846;
+		font-family:Georgia, "Times New Roman", Times, serif;
+		font-size:48px;
+	}
+	.searchHeader h2 {
+		color:#5e5d5d;
+		font-family:Georgia, "Times New Roman", Times, serif;
+		font-size:24px;
+	}
 .pagination {
 	clear:both;
-	padding:10px 0 15px 0;
-	position:relative;
-	font-size:11px;
-	line-height:13px;
 	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
 	font-weight:bold;
 	height:25px;
+	line-height:13px;
 	margin:0 auto 0 auto;
+	padding:10px 0 15px 0;
+	position:relative;
 	width:175px;
 }
-
-.pagination span, .pagination a {
-	display:block;
-	float:left;
-	margin: 2px 2px 2px 0;
-	padding:5px 9px 5px 10px;
-	text-decoration:none;
-	width:9px;
-	height:14px;
-	background: url(../../../images/pagination.png) no-repeat;
-}
-.pagination a:link, .pagination a:visited {
-	color:#fff;
-	background-position:0 -24px;
-}
-.pagination a:hover{
-	color:#fff;
-	background-position:0 -48px;
-}
-.pagination a:active {
-	color:#fff;
-	background-position:0 -24px;
-}
-.pagination .current{
-	background-position:0 0;
-	color: #892846;
-}
+	.pagination span,
+	.pagination a {
+		background: url(../../images/pagination.png) no-repeat;
+		color:#fff;
+		display:block;
+		float:left;
+		height:14px;
+		margin: 2px 2px 2px 0;
+		padding:5px 9px 5px 10px;
+		text-decoration:none;
+		width:9px;
+	}
+	.pagination a:link,
+	.pagination a:visited {
+		background-position:0 -24px;
+	}
+	.pagination a:hover{
+		background-position:0 -48px;
+	}
+	.pagination a:active {
+		background-position:0 -24px;
+	}
+	.pagination .current{
+		color: #892846;
+		background-position:0 0;
+	}
