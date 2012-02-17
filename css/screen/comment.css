@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~COMMENTS
+\*------------------------------------*/
+
+/**
+ * Discus Commenting Overide
+ */
+#disqus_thread h3 {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:24px;
+	color:#892846;
+}
+
+#dsq-subscribe {
+	display:none;
+}
+
+.dsq-comment-body {
+	font: bold 12px Arial, Helvetica, sans-serif;
+}
+/**
+ * Comment Disclaimer
+ */
+#commentDisclaimer {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#5e5d5d;
+	width:550px;
+	float:right;
+	margin: 0 0 10px 0;
+}

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~FOOTER
+\*------------------------------------*/
+
+#footer {
+    position:relative;
+    text-align:center;
+    padding:10px 0 10px 0;
+    width:600px;
+    margin:15px auto 0 auto;
+    border-top:1px solid #58020f;
+}
+
+#footer li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#footer ul:first-child {
+    margin-bottom:5px;    
+}
+    #footer a:link,
+    #footer a:visited {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        font-size:12px;
+        text-decoration:none;
+    }
+    #footer a:link,
+    #footer a:visited {
+        color: #58020f;
+    }
+    #footer a:hover {
+        text-decoration:underline;
+    }
+    #footer li:after {
+        display:inline;
+        content:" \007c";
+    }
+    #footer li:last-child:after {
+        display:inline;
+        content:"";
+    }
+
+/**
+ * Record Footer Logo
+ */
+#logo-container {
+    margin:10px auto 0 auto;
+    height:54px;
+    width:141px;
+}
+    #ceraLogo {
+        background: url("../../images/logos.png");
+        background-position:-345px -31px;
+        float:left;
+        height:54px;
+        width:78px;
+    }
+    #footer .logo {
+        background: url("../../images/logos.png");
+        border-right:1px solid #58020f;
+        float:left;
+        height:42px;
+        margin:10px 10px 0 0;
+        width:43px;
+        background-position:-303px 0;
+    }

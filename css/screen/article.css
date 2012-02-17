@@ -1,0 +1,116 @@
+
+/**********************ARTICLE TEXT*******************/
+.articleText {
+	padding:0;
+}
+.articleText ul {
+	margin: 0 0 0 30px;
+}
+.articleText p {
+	font-size:14px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	padding:10px 0 10px 0;
+}
+
+.articleText a:link, .articleText a:visited,
+.edit a:link, .edit a:visited {
+	color:#892846;
+	text-decoration:none;
+}
+.articleText a:hover,
+.edit a:hover {
+	color:#892846;
+	text-decoration:underline;
+}
+.articleText a:active,
+.edit a:active {
+	color:#000;
+	text-decoration:none;
+}
+/*******ARTICLE**********/
+.article h2.headline {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:25px;
+	color:#58020f;
+}
+.article .timestamp {
+	padding:0;
+}
+.article .byline a, .article .byline {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#7e8084;
+	padding:3px 0 0 0;
+	text-transform:uppercase;
+	text-decoration:none;
+}
+.article .byline:before {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#7e8084;
+	content:"By";
+	padding-right:5px;
+	text-transform:none;
+}
+.article p.categories {
+	float:left;
+	padding:0 0 5px 0;
+}
+.article .caption {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color: #b2b2b2;
+	padding:0 0 5px 0;
+	border-bottom:2px solid #b2b2b2;
+}
+.article .media-credit {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	text-align:right;
+	text-transform:uppercase;
+	color:#000;
+	padding:8px 0 0 0;
+}
+.article .media-credit:before {
+	content:url(../../images/photoIcon.jpg);
+	padding-right:5px;
+	padding-top:2px;
+}
+#authorBio {
+	padding:12px;
+	width:571px;
+	height:81px;
+	background: #f7f7f7;
+}
+#authorBio img {
+	float:left;
+}
+#authorBio p {
+	padding:5px;
+	width:465px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#999;
+	text-align:left;
+	background:#fff;
+	border:1px solid #b2b2b2;
+	margin:0;
+	margin-left:5px;
+	display:block;
+	float:right;
+}
+#authorBio a:link, #authorBio a:visited {
+	color:#892846;
+	text-decoration:none;
+}
+#authorBio a:hover {
+	color:#000;
+	text-decoration:none;
+}
+#authorBio a:active {
+	color:#000;
+	text-decoration:underline;
+}

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~SHAREBAR
+\*------------------------------------*/
+
+/**
+ * Organize Share Bar for Articles
+ */
+.shareBar {
+	padding:2px 0 2px 0;
+	margin:5px 0 5px 0;
+	font:bold 13px/11px Arial, Helvetica, sans-serif;
+	text-align:left;
+	border-bottom:1px solid #999;
+	border-top:1px solid #999;
+}
+	.shareBar .right {
+		display: inline;
+		float:right;
+		margin:-23px 0 0 0;
+		padding:4px 4px 4px 4px;
+		height:18px;
+		border-left:1px solid #999;
+	}
+	.shareBar a {
+		margin:0 0 0 10px;
+		color:#9f9f9f;
+	}
+		.shareBar a:link,
+		.shareBar a:visited {
+			text-decoration:none;
+		}
+		.shareBar a:hover,
+		.shareBar a:active {
+			text-decoration:underline;
+		}

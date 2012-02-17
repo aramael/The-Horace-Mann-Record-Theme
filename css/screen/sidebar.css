@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~SIDEBAR
+\*------------------------------------*/
+
+#sidebar{
+	float: right;
+	position:relative;
+	top:20px;
+	padding:15px;
+	width:238px;
+	text-align:justify;
+}
+	#sidebar:last-child {
+		width:100%;
+		height:40px;
+	}
+	#sidebar .logo{
+		width:221px;
+		height:177px;
+		background:url(../../images/logos.png);
+		background-position:0 -163px;
+	}
+	#sidebar h1 {
+		font:bold 18px Arial, Helvetica, sans-serif;
+		text-transform:uppercase;
+		text-align:center;
+		color: #58020f;
+		display:block;
+		border-top: 1px solid #d3aca3;
+		border-bottom: 1px solid #d3aca3;
+		margin:10px 0 10px 0;
+	}
+	#sidebar ul {
+		margin:0 0 0 5px;
+		padding:0;
+	}
+	#sidebar li {
+		list-style:none;
+		margin:0;
+		padding:0;
+		font:bold 12px Arial, Helvetica, sans-serif;
+	}
+	#sidebar p {
+		font:bold 12px Arial, Helvetica, sans-serif;
+	}
+	#sidebar a:link, #sidebar a:visited {
+		color:#000;
+		text-decoration:none;
+	}
+	#sidebar a:hover {
+		color:#892846;
+		text-decoration:none;
+	}
+	#sidebar a:active {
+		color:#892846;
+		text-decoration:underline;
+	}

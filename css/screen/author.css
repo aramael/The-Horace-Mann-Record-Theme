@@ -1,0 +1,45 @@
+
+/*************************AUTHOR PAGE*****************************/
+.authorPhoto {
+	padding:10px;
+	background:#CCC;
+	width:403px;
+	margin:0 auto 0 auto;
+}
+.authorPhoto img {
+	border:1px solid #5d5e5e;
+}
+.authorInfo {
+	text-align:center;
+}
+.author h1 {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:36px;
+	color:#892846;
+}
+.author h2 {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+	color:#5e5d5d;
+}
+.author .featuredCategoryTitle {
+	margin-bottom:15px;
+}
+.author .title a, .author p{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+}
+.author .title a:link, .author .title a:visited{
+	color:#000;
+	text-decoration:none;
+}
+.author .title a:hover {
+	color:#892846;
+	text-decoration:underline;
+}
+.author .title a:active {
+	color:#000;
+	text-decoration:underline;
+}
