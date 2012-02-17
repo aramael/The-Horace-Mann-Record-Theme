@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/*------------------------------------*\
+	~LAYOUT
+\*------------------------------------*/
+
+body {
+	background:#dcdcdc url(../../images/bg.png) repeat-x;padding:0;
+}
+#container {
+	width:915px;
+	margin-right:auto;
+	margin-left:auto;
+}
+	#page {
+		background: url(../../images/content.png) repeat-y;
+		position:relative;
+		width:100%;
+	}
+		#page-top{
+			background:url(../../images/content-top.png);
+			height:14px;
+			width:100%;
+		}
+		#page-bottom{
+			background:url(../../images/content-bottom.png) no-repeat top center;
+			clear:both;
+			height:19px;
+			width:929px;
+		}
+	#content{
+		position:relative;
+		float:left;
+		top:20px;
+		margin-left:14px;
+		padding:15px;
+		width:599px;
+		text-align:justify;
+	}
+#header {
+	width: 900px;
+	margin-left:auto;
+	margin-right:auto;
+	height: 70px;
+	position:relative;
+}
+	#header .logo {
+		background-position:0 0;
+		background: url(../../images/logos.png);
+		display:block;
+		height: 36px;
+		position:absolute;
+		text-indent: -9999em;
+		top:17px;
+		width: 303px;
+	}
+#secondNav {
+	border-bottom: 1px solid #d6b5bf;
+	border-top: 1px solid #d6b5bf;
+	color: #78092c;
+	height: 18px;
+	padding:1px 10px 5px 5px;
+	position:absolute;
+	right:0;
+	top:21px;
+	width: 567px;
+}
+	#secondNav ul,
+	#secondNav li {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+	#secondNav li:after {
+		display:inline;
+		content:" \2022";
+	}
+	#secondNav a:link,
+	#secondNav a:visited {
+		color: #78092c;
+		font-family:Arial, Helvetica, sans-serif;
+		font-size:12px;
+		font-weight:bold;
+		text-decoration:none;
+	}
+	#secondNav a:hover {
+		text-decoration:underline;
+	}

@@ -1,0 +1,79 @@
+#followUs {
+	margin:8px auto 0 auto;
+	width:144px;
+	height:32px;
+	padding:10px 8px 10px 10px;
+	background:url(../images/socialMediaBg.png);
+}
+	#followUs ul {
+		margin:-3px 0 0 0;
+		padding:0;
+		display:inline-block;
+	}
+		#followUs li {
+			list-style:none;
+			margin:0 0 0 0;
+			display:inline-block;
+			padding:0;
+			text-align:left;
+			height:32px;
+			width:32px;
+		}
+			#followUs li a {
+				text-indent: -9999em;
+				height:32px;
+				width:32px;
+				display:block;
+				background:url(../images/socialMediaIcons.png);
+			}
+				/**
+				 * Mailing List Link
+				 */
+				#followUs li a.emailFollow{
+					background-position:0 0;
+				}
+				#followUs li a.emailFollow:hover{
+					background-position:-32px 0;
+				}
+				#followUs li a.emailFollow:active{
+					background-position:-32px 0;
+				}
+				
+				/**
+				 * Facebook Profile
+				 */
+				#followUs li a.facebookFollow{
+					background-position:0 -32px;
+				}
+				#followUs li a.facebookFollow:hover{
+					background-position:-32px -32px;
+				}
+				#followUs li a.facebookFollow:active{
+					background-position:-32px -32px;
+				}
+				
+				/**
+				 * Twitter URL
+				 */
+				#followUs li a.twitterFollow{
+					background-position:0 -64px;
+				}
+				#followUs li a.twitterFollow:hover{
+					background-position:-32px -64px;
+				}
+				#followUs li a.twitterFollow:active{
+					background-position:-32px -64px;
+				}
+				
+				/**
+				 * RSS Feed
+				 */
+				#followUs li a.rssFollow{
+					background-position:0 -96px;
+				}
+				#followUs li a.rssFollow:hover{
+					background-position:-32px -96px;
+				}
+				#followUs li a.rssFollow:active{
+					background-position:-32px -96px;
+				}
