@@ -44,7 +44,8 @@
 	#sidebar p {
 		font:bold 12px Arial, Helvetica, sans-serif;
 	}
-	#sidebar a:link, #sidebar a:visited {
+	#sidebar a:link,
+	#sidebar a:visited {
 		color:#000;
 		text-decoration:none;
 	}
